@@ -1,0 +1,12 @@
+2020-09-27 16:49:22 =ERROR REPORT====
+eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}2020-09-27 16:49:37 =ERROR REPORT====
+Supervisor received unexpected message: {gen_event_EXIT,{partisan_peer_service_events,#Ref<0.3825567104.3114795009.55602>},shutdown}
+2020-09-27 16:49:37 =ERROR REPORT====
+eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}2020-09-27 16:49:53 =ERROR REPORT====
+eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}2020-09-27 16:50:08 =ERROR REPORT====
+eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}2020-09-27 16:50:24 =ERROR REPORT====
+eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}2020-09-27 16:50:40 =ERROR REPORT====
+eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}2020-09-27 16:50:55 =ERROR REPORT====
+eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}2020-09-27 16:51:10 =ERROR REPORT====
+eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}2020-09-27 16:51:25 =ERROR REPORT====
+eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}

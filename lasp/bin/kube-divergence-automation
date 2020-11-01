@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+STATE_INTERVALS=(2 8 32 128 2048 4096)
+
+for k in ${STATE_INTERVALS[@]}; do
+  echo "Running simulation with interval ${k}"
+  STATE_INTERVAL=${k} bin/kube-divergence-simulation
+done

@@ -1,0 +1,65 @@
+RDV4 14-10-20 16h LLN
+
+
+Ce que je dois faire:
+
+1) Cloturer mes questions du RDV3
+2) Faire tourner des nodes sur un serveur externe
+3) Comprendre le concept de ORSWOT
+
+=========================================================================================================
+
+1) Questions restantes:
+
+A) Dans l'article ppdp-2015 (Lasp: A Language for Distributed, Coordination-Free Programming), à la page 6, vous définissez "delivery"
+Voir image. Je n'arrive pas à comprendre cette définition.
+
+B) Dans l'article ppdp-2015 (Lasp: A Language for Distributed, Coordination-Free Programming), à la page 7, on voit un exemple de 
+merge scheduler qui cause un non-déterminisme. Vous indiquez ensuite deux conditions à imposer pour éviter ce non-déterminisme.
+L'exemple et les deux conditions à imposer sont indiquées sur l'image.
+J'ai du mal à bien comprendre ces conditions, ne sont-elles pas très restrictives?
+
+=========================================================================================================
+
+2) Nodes sur serveur externe:
+
+Concernant la VM:
+TODO:
+1) Install Erlang: OK
+2) Install REBAR3: OK
+3) Install git: OK
+4) Git clone Lasp: OK
+5) Build Lasp: OK
+6) Run few nodes: OK
+7) Make a cluser: OK
+8) Connect these (remote) nodes with nodes on my computer: NOT WORKING
+Partisan can not connect remote nodes with local nodes. I don't understand why.
+VM IP:  130.104.229.25
+Home routeur IP: 109.132.2.179
+Home computer IP: 192.168.1.39
+
+Clusters nodes de la VM ensemble: OK
+Cluster node local avec node de la VM: erreur.
+lasp_peer_service:join('tfe1@130.104.229.25'). Depuis node local:
+[error] gen_server partisan_pluggable_peer_service_manager terminated with reason: no function clause matching lists:foldl(#Fun<partisan...
+
+lasp_peer_service:join(#{name => tfe2@130.104.229.25, listen_addrs => [#{ip => {130,104,229,25}, port => 40421}]}). Depuis node local:
+syntax error before: '.'
+lasp_peer_service:join(#{name => tfe2, listen_addrs => [#{ip => {130,104,229,25}, port => 40421}]}). Depuis node local:
+ok.
+Ca dit ok mais quand je regarde members ça n'est pas bon. Et peu importe l'adresse ip que je mets ou le port, ça met toujours "ok".
+
+
+
+
+
+
+
+
+
+=========================================================================================================
+
+3) ORSWOT
+Voir docx ou pdf.
+
+

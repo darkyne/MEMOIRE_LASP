@@ -1,0 +1,21 @@
+Lasp (acronym inspired by Lattice Processing and Lisp) is a state-of-the-art programming language for synchronisation-free distributed programming [1]. Lasp programming strongly resembles functional programming, but in contrast to traditional functional languages, Lasp programs are fully distributed and robust against communication and node failures, offline computation, and network partitioning. Lasp is being developed in the SyncFree and LightKone projects [2,3] and uses CRDTs (Conflict-free Replicated Data Types) as its basic data type [4]. Lasp allows programmers to build applications by composing CRDTs in a dataflow graph while ensuring that the composition obeys the same strong convergence properties as the CRDTs themselves (Strong Eventual Consistency).
+
+
+
+Lasp can run programs in large, loosely-coupled distributed systems such as edge networks. In these systems, information between nodes can temporarily diverge, because of node delays or system partitions. This is normal behavior in a Lasp execution and does not endanger the correctness. However, divergence is a useful property to measure for Lasp execution. For example, in a scenario where each node in a cluster is counting the number of times an advertisement has been viewed on a mobile phone, each node will see a different subset of the global total, based on how often it synchronizes with other nodes in the cluster. We would like to visualize this divergence and how it changes in real time.
+
+
+
+For this master's project, you will build a tool that visualizes the divergence of a Lasp program in real time. The implementation work will be done using the Achlys framework [5] and in a browser with JavaScript, and will use an existing Lasp node to compile and retrieve the instrumentation details. Using the real-time view of divergence, it becomes possible to control the Lasp execution in interesting ways, for example to bypass parts of the system that are potentially unstable.  For more information, please contact Igor Kopestenski or Peter Van Roy.
+
+
+
+[1] Christopher Meiklejohn and Peter Van Roy. Lasp: A Language for Distributed, Coordination-Free Programming. In Proceedings of the 17th International Symposium on Principles and Practice of Declarative Programming, pages 184–195. Siena, Italy, July 14-16, 2015.
+
+[2] SyncFree: Large-scale computation without synchronisation. European Seventh Framework Programme project, Oct. 2013 - Dec. 2016. See: syncfree.lip6.fr.
+
+[3] LightKone: Lightweight Computation for Networks at the Edge. European Horizon 2020 project, Jan. 2017 - Dec. 2019. See: lightkone.eu.
+
+[4] Marc Shapiro, Nuno Preguiça, Carlos Baquero, and Marek Zawirski. A comprehensive study of convergent and commutative replicated data types. Technical Report RR-7506, INRIA, 01 2011.
+
+[5] Igor Kopestenski. Achlys: An Erlang Framework for Building Applications with Lasp on GRiSP. See: achlys.app.

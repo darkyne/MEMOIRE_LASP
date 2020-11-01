@@ -1,0 +1,6 @@
+Pour recompiler lasp et ses dépendances:
+
+rebar3 do clean --all
+make
+
+Cela permet de recompiler aussi les modifications apportées aux types.

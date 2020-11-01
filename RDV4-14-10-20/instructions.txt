@@ -1,0 +1,21 @@
+How to launch a node from my VM:
+
+
+IF YOU WANNA USE THE VM:
+1) How to access the vm:
+Open a terminal
+Enter ssh ucl
+Inside studssh, enter ssh tfe
+enter cd lasp
+enter ~/rebar3 shell --name tfe1@130.104.229.105
+
+WITH RASPBERRY PI:
+
+1) On Raspberry PI, go to lasp folder, run:
+rebar3 shell --name raspi@192.168.1.62
+
+2) On my machine: enter lasp folder
+enter rebar3 shell --name lasp1@192.168.1.39
+
+Clustering works !
+

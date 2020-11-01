@@ -1,0 +1,2 @@
+2020-09-27 16:50:10 =ERROR REPORT====
+eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}

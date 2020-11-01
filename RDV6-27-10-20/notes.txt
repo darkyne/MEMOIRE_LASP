@@ -1,0 +1,169 @@
+TODO:
+
+-Fake app qui peut run sur les nodes pour générer des valeurs et utiliser un CRDT.
+-Script permettant de simuler des partitions.
+-Implémentation du ORSWOT sur base du ORSET. FINALEMENT DEJA FOURNIS!
+==================================================================================================================================
+==================================================================================================================================
+FAKE APP:
+
+Remarque: le node sur lequel on join aura tendance à converger plus vite que les autres.
+
+J'ai une fonction 			
+launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, All_At_Once, SendingSpeed, NumberOfValues, GeneratingUnderPartition)
+
+Voici sa spec:
+
+%Launch an experiment for the current node
+% IN:
+%Specify a number for the experiment (used to write the result file)
+%Specify the node to join to create the cluster
+%Specify a CRDT_ID (format as <<"setX">>)
+%Specify the Total Number of Nodes taking part of the experiment
+%Specify the Sending Speed (as the number of ms between each send, considering one node), 0 means the fastest possible
+%Specify the Number of Values each node will have to generate and send on the CRDT
+%Specify (with a boolean) if you want the node to join the cluster then generate and send values. Or rather generate and send values on the isolated CRDT (as if it was under partition) then join.
+%Specify (with a boolean) if you want all the elements to be sent at once or gradually (if gradually, it will use SendingSpeed)
+% OUT:
+%The node will generate the number of values and send them, trying to achieve the specified Sending Speed.
+%It will join the cluster before or after sending the values based on GeneratingUnderPartition
+%The time required to generate and send the values, the time required after the generation to reach convergence and all the paramters are written to a file
+%The file name will be in the folder /lasp/Memoire/Mesures with the name Exp+ExperimentNumber+_Node+TheActualNodeId
+
+Elle fonctionne pour l'instant.
+Petits défauts:
+La vitesse à laquelle les datas sont envoyés sont influencés par la vitesse donnée en argument mais n'envoit pas précisément à cette vitesse car il y a des ralentissements dûs à la machine.
+Cela n'influence pas les mesures obtenues.
+
+INFO IMPORTANTE:
+La réelle mesure du temps pour converger (cas partition false) = EllapsedTime + RequiredTimeToSend - MaximumRequiredTimeToSend(biggest from all nodes).
+Comme ça, on a bien le temps entre le moment où tous les nodes ont envoyés leurs données et le moment où le node a bien récupéré toutes les données du cluster.
+Cela nécessite donc d'analyser l'ensemble des fichiers d'une expérience (regarder chaque node) pour pouvoir finalement calculer les convergence time.
+
+REMARQUES: 
+Quand le cluster comporte beaucoup de nodes, la disparité entre les nodes grandit énormément. Par exemple avec un cluster de 20 nodes, où chaque node génère 100values et on attend que le node récupère les 2.000 values:
+Ils vont convergés par vague. Par exemple au bout de 10 secondes, 10 nodes vont converger. Puis il faudra par exemple 10 seconde de plus pour que les 10 nodes suviantes convergent d'un coup.
+En gros je pense qu'il y a un petit broadcast (par exemple aux voisins proches) quand un node converge, ce qui fait qu'ils convergent par vague. Pour un petit nombre de nodes, ils convergent tous en même temps du coup.
+
+10 nodes locaux: ils convergent tous d'un coup. Et ce, que je join avant ou après de send les values.
+
+TODO pour dimanche: Ajouter des experiences avec des removes.
+Faire en sorte que ça ne fasse que du aw_set. Il n'y a pas besoin de considérer aussi les orset, je pense.
+==================================================================================================================================
+==================================================================================================================================
+Injection de partition:
+Je join avant de générer et envoyer les values pour faire qu'il n'y ai pas de partition.
+Je peux aussi générer et envoyer les values puis join, ce qui revient à être sous partition pendant l'envoi des données.
+Le fait de jouer sur le fait de join ou leave le cluster permet, je pense, de simuler une partition.
+
+
+
+WHAT I HAVE:
+==================================================================================================================================
+==================================================================================================================================
+launchExperimentAdding:
+
+launchExperimentAdding(ExperimentNumber, NodeToJoin, CRDT_Id, TotalNumberOfNodes, SendingSpeed, NumberOfValues, GeneratingUnderPartition)
+
+On commence avec un aw_set vide.
+Tous les nodes vont ajouter des values dedans.
+On détecte lorsqu'un node a détecté l'ensemble des values.
+Ex: On a 10 nodes, chaque node produit 10 values, quand un node détecte 100 values, il a convergé.
+Mesure qu'on peut calculer et qui m'a l'air intéressante:
+le temps entre le moment où le node le plus lent a fini d'add ses 10 values et le moment où on détecte les 100 values.
+Avec les paramètres on peut jouer sur plusieurs facteurs.
+
+TODO: Permettre de faire un add_all ou des add normaux. En gros est-ce qu'on peut tout add d'un coup ou progressivement avec une certaine vitesse ?
+==================================================================================================================================
+==================================================================================================================================
+launchingExperimentRemoving:
+
+
+On commence avec un aw_set déjà rempli avec un nombre connu de values, ex 100values.
+Comment faire en sorte que tous les nodes commencent avec ce même CRDT déjà rempli?
+Idée1: 	Ils commencent tous par add les values. Ensuite on attend un certain temps ex:10secondes
+		Puis ils commencent à retirer les values. Exemple il y a 100 values 1,2,3,4,...100. Et chaque node va retire 10 values (ex node1 retire 1,2,3...10).
+		Et on détecte quand on a 0 values dans le set.
+		Ca peut être bien mais: 
+		-Il faut être sûr qu'ils aient tous convergés avant de commencer à retirer des valeurs. Sinon on pourrait avoir des adds et des removes et ça foutrait le bordel.
+		Régler ça: 	Attendre suffisemment de temps après avoir add les valeurs pour être sûr qu'ils ont tous convergé. Mais c'est pas ouf.
+					Add toutes les valeurs d'un coup. A voir si c'est possible d'add un grand nombre de valeurs d'un coup en un seul add. Pour ça: add_all plutôt que add
+					Le mieux: Hardcoder le set dès le début. Style: {state_awset, {[{"a", [{a, 2}]}],{[{a, 2}], []}}},
+				
+		-Il faut savoir quand le node le plus lent a finit de retirer ses 10 valeurs. C'est le temps entre ce moment et le moment où on détecte 0 valeurs qui est intéressant.
+		
+pareil que pour launchExperimentAdding permettre de retirer un par un ou tout d'un coup.
+
+
+
+PROBLEMES ACTUELS:
+
+
+1) Synchronization pour lancer les expériences
+Comment faire pour lancer des experiences les unes derrières les autres?
+Car je dois attendre que l'expérience soit terminée sur TOUS les nodes pour pouvoir lancer l'expérience suivante.
+Afin d'éviter des décallages.
+Comment envoyer un signal style à tel moment vous démarez.
+Se baser sur erlang:system_time ?
+
+2) Lecture des fichiers d'output et analyse
+Des conseils?
+Combien d'itérrations pour chaque expérience (pour des mêmes paramètres) ?
+Que calculer sur base des fichiers? Le temps de convergence, ok. Mais d'autres choses aussi ? (exemple essayer d'analyser l'utilisation réseau durant l'expérience via wireshard ou autre ?)
+Il faut que je m'informe vite fait aussi sur les statistiques, quelles formules utiliser et que calculer en plus de la moyenne (variance, écart type ?)
+
+
+3) Partition
+Le fait de join ou leave le cluster, est-ce approprié pour simuler une partition? C'est ce que je fais pour l'instant.
+
+4) Apps
+Comment spécifier quelle app lancer ? Je pense que ce n'est pas compliqué, demande probablement juste un peu de configuration de certaines fichiers et mettre la bonne commande dans le terminal.
+
+5) Modules
+Comment créer un module qui embarquerait mon code et pourrait être lancé ou non au lancement de lasp (comme les autres modules).
+Ce module pourrait export les fonctions de test pour qu'elles soient utilisées n'importe où.
+
+6) SSH
+Comment faire en sorte que mon script qui lance X nodes puisse en lancer Y depuis mon ordi et Z sur le raspberry pi ?
+
+
+
+Mesures utilisation réseau et mémoire du CRDT.
+Vérifier que la taille du CRDT n'augmente pas quand on ajoute et enlève des éléments.
+Regarder si je peux congestionner volontairement le réseau.
+
+Idéal:
+Ce serait sur le long terme d'avoir un graphe avec al vitesse du CRDT et la vitesse de convergence.
+Vitesse du CRDT étant le nombre de changement par seconde.
+
+
+Pour des données générées en continue:
+Monter (incrémenter) puis décrémenter et boucle sur une plage de valeurs propre à chaque node.
+
+
+
+RDV Suivant:
+Mardi prochain à 14h
+
+Avoir la fonction qui ajoute et retire. (pas que ajouter ou que retirer)
+Ajouter mesure du réseau et de la mémoire utisliée par le CRDT.
+Avoir un programme qui analyse les outputs.
+Résoudre le programme d'orchestrage (pour démarer les expériences en même temps).
+
+
+Idée pour orchestrage:
+Quand un node a fini l'expérience il le met dans un CRDT spécial.
+Tous les un certain unix time + 10secondes:
+	If tous les nodes ont finis (info connue via le CRDT spécial):
+		Do: Start experience suivante.
+
+Et première étape dans l'expérience serait de retirer dans le CRDT_special pour dire qu'on est occupé. Et à la fin de l'expérience, remettre dans le CRDT spécial. En gros avoir son ID dedans veut dire "JE suis dispo".
+Ca permet d'être sûr que tous les nodes ont finis avant de lancer l'expérience. Et pour lancer l'expérience, ça se base sur un unix time pour être sûr que ça lance en même temps.
+
+Genre:
+
+If (unixtime==X & EveryNodeFinished() ) 
+	Start xp2
+
+
+

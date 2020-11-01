@@ -1,0 +1,371 @@
+2020-09-27 16:49:22.252 [info] <0.4763.0>@partisan_config:init:61 Using node name: 'runner@gcreupelandt-N551VW'
+2020-09-27 16:49:22.258 [info] <0.4766.0>@partisan_config:get_node_address:235 Resolving "gcreupelandt-N551VW"...
+2020-09-27 16:49:22.258 [info] <0.4766.0>@partisan_config:get_node_address:238 Resolved "runner@gcreupelandt-N551VW" to {127,0,1,1}
+2020-09-27 16:49:22.258 [info] <0.4763.0>@partisan_config:get_node_address:255 Resolved "gcreupelandt-N551VW" to {127,0,1,1}
+2020-09-27 16:49:22.316 [info] <0.4763.0>@partisan_sup:init:66 Partisan listening on {127,0,1,1}:47121 listen_addrs: [#{ip => {127,0,1,1},port => 47121}]
+2020-09-27 16:49:22.326 [info] <0.4818.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-09-27 16:49:22.339 [info] <0.4820.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:49:22.380 [info] <0.4823.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:49:22.430 [info] <0.4849.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-09-27 16:49:22.432 [info] <0.4849.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-09-27 16:49:22.433 [info] <0.4849.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-09-27 16:49:22.435 [info] <0.4849.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-09-27 16:49:22.436 [info] <0.4849.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-09-27 16:49:22.438 [info] <0.4849.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-09-27 16:49:22.439 [info] <0.4849.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-09-27 16:49:22.441 [info] <0.4849.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-09-27 16:49:22.444 [info] <0.4849.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-09-27 16:49:22.469 [info] <0.4849.0>@lasp_sup:init:88 Membership: false
+2020-09-27 16:49:22.470 [info] <0.4849.0>@lasp_sup:init:106 Workflow: true
+2020-09-27 16:49:22.475 [info] <0.4849.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-09-27 16:49:22.478 [info] <0.4849.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-09-27 16:49:22.479 [info] <0.4849.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-09-27 16:49:22.481 [info] <0.4849.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-09-27 16:49:22.482 [info] <0.4849.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-09-27 16:49:22.484 [info] <0.4849.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-09-27 16:49:22.485 [info] <0.4849.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-09-27 16:49:22.486 [info] <0.4849.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-09-27 16:49:22.488 [info] <0.4849.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-09-27 16:49:22.489 [info] <0.4849.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-09-27 16:49:22.496 [info] <0.4919.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.4919.0>
+2020-09-27 16:49:22.496 [info] <0.4918.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.4919.0>
+2020-09-27 16:49:22.501 [error] <0.4925.0> eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}
+2020-09-27 16:49:22.537 [info] <0.4929.0>@lasp_support:start_runner:269 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'runner@gcreupelandt-N551VW'
+2020-09-27 16:49:23.766 [info] <0.4929.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:49:23.767 [info] <0.4929.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:49:23.772 [info] <0.4929.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-1@gcreupelandt-N551VW'
+2020-09-27 16:49:25.186 [info] <0.4929.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:49:25.188 [info] <0.4929.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:49:25.192 [info] <0.4929.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-2@gcreupelandt-N551VW'
+2020-09-27 16:49:26.595 [info] <0.4929.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:49:26.596 [info] <0.4929.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:49:26.601 [info] <0.4929.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-3@gcreupelandt-N551VW'
+2020-09-27 16:49:37.086 [info] <0.43.0> Application lasp exited with reason: stopped
+2020-09-27 16:49:37.087 [error] <0.4843.0> Supervisor received unexpected message: {gen_event_EXIT,{partisan_peer_service_events,#Ref<0.3825567104.3114795009.55602>},shutdown}
+2020-09-27 16:49:37.088 [info] <0.43.0> Application partisan exited with reason: stopped
+2020-09-27 16:49:37.171 [info] <0.5256.0>@lasp_support:start_runner:269 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'runner@gcreupelandt-N551VW'
+2020-09-27 16:49:37.172 [info] <0.5263.0>@partisan_config:init:61 Using node name: 'runner@gcreupelandt-N551VW'
+2020-09-27 16:49:37.314 [info] <0.5263.0>@partisan_sup:init:66 Partisan listening on {127,0,1,1}:47121 listen_addrs: [#{ip => {127,0,1,1},port => 47121}]
+2020-09-27 16:49:37.323 [info] <0.5317.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-09-27 16:49:37.349 [info] <0.5320.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:49:37.381 [info] <0.5323.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:49:37.429 [info] <0.5343.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-09-27 16:49:37.431 [info] <0.5343.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-09-27 16:49:37.433 [info] <0.5343.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-09-27 16:49:37.435 [info] <0.5343.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-09-27 16:49:37.436 [info] <0.5343.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-09-27 16:49:37.438 [info] <0.5343.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-09-27 16:49:37.439 [info] <0.5343.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-09-27 16:49:37.441 [info] <0.5343.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-09-27 16:49:37.443 [info] <0.5343.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-09-27 16:49:37.465 [info] <0.5343.0>@lasp_sup:init:88 Membership: false
+2020-09-27 16:49:37.468 [info] <0.5343.0>@lasp_sup:init:106 Workflow: true
+2020-09-27 16:49:37.474 [info] <0.5343.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-09-27 16:49:37.477 [info] <0.5343.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-09-27 16:49:37.478 [info] <0.5343.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-09-27 16:49:37.480 [info] <0.5343.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-09-27 16:49:37.481 [info] <0.5343.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-09-27 16:49:37.483 [info] <0.5343.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-09-27 16:49:37.484 [info] <0.5343.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-09-27 16:49:37.486 [info] <0.5343.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-09-27 16:49:37.487 [info] <0.5343.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-09-27 16:49:37.488 [info] <0.5343.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-09-27 16:49:37.496 [info] <0.5414.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.5414.0>
+2020-09-27 16:49:37.496 [info] <0.5413.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.5414.0>
+2020-09-27 16:49:37.497 [error] <0.5419.0> eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}
+2020-09-27 16:49:38.731 [info] <0.5256.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:49:38.733 [info] <0.5256.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:49:38.738 [info] <0.5256.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-1@gcreupelandt-N551VW'
+2020-09-27 16:49:40.194 [info] <0.5256.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:49:40.196 [info] <0.5256.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:49:40.200 [info] <0.5256.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-2@gcreupelandt-N551VW'
+2020-09-27 16:49:41.618 [info] <0.5256.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:49:41.620 [info] <0.5256.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:49:41.624 [info] <0.5256.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-3@gcreupelandt-N551VW'
+2020-09-27 16:49:52.589 [info] <0.43.0> Application lasp exited with reason: stopped
+2020-09-27 16:49:52.592 [info] <0.43.0> Application partisan exited with reason: stopped
+2020-09-27 16:49:52.646 [info] <0.5680.0>@lasp_support:start_runner:269 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'runner@gcreupelandt-N551VW'
+2020-09-27 16:49:52.646 [info] <0.5688.0>@partisan_config:init:61 Using node name: 'runner@gcreupelandt-N551VW'
+2020-09-27 16:49:52.820 [info] <0.5688.0>@partisan_sup:init:66 Partisan listening on {127,0,1,1}:47121 listen_addrs: [#{ip => {127,0,1,1},port => 47121}]
+2020-09-27 16:49:52.829 [info] <0.5737.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-09-27 16:49:52.851 [info] <0.5740.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:49:52.888 [info] <0.5743.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:49:52.915 [info] <0.5763.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-09-27 16:49:52.918 [info] <0.5763.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-09-27 16:49:52.921 [info] <0.5763.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-09-27 16:49:52.924 [info] <0.5763.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-09-27 16:49:52.926 [info] <0.5763.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-09-27 16:49:52.929 [info] <0.5763.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-09-27 16:49:52.932 [info] <0.5763.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-09-27 16:49:52.935 [info] <0.5763.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-09-27 16:49:52.941 [info] <0.5763.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-09-27 16:49:52.991 [info] <0.5763.0>@lasp_sup:init:88 Membership: false
+2020-09-27 16:49:52.994 [info] <0.5763.0>@lasp_sup:init:106 Workflow: true
+2020-09-27 16:49:53.005 [info] <0.5763.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-09-27 16:49:53.011 [info] <0.5763.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-09-27 16:49:53.014 [info] <0.5763.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-09-27 16:49:53.017 [info] <0.5763.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-09-27 16:49:53.020 [info] <0.5763.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-09-27 16:49:53.023 [info] <0.5763.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-09-27 16:49:53.027 [info] <0.5763.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-09-27 16:49:53.031 [info] <0.5763.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-09-27 16:49:53.034 [info] <0.5763.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-09-27 16:49:53.037 [info] <0.5763.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-09-27 16:49:53.046 [info] <0.5833.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.5833.0>
+2020-09-27 16:49:53.046 [info] <0.5832.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.5833.0>
+2020-09-27 16:49:53.047 [error] <0.5839.0> eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}
+2020-09-27 16:49:54.284 [info] <0.5680.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:49:54.285 [info] <0.5680.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:49:54.290 [info] <0.5680.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-1@gcreupelandt-N551VW'
+2020-09-27 16:49:55.796 [info] <0.5680.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:49:55.798 [info] <0.5680.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:49:55.802 [info] <0.5680.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-2@gcreupelandt-N551VW'
+2020-09-27 16:49:57.245 [info] <0.5680.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:49:57.246 [info] <0.5680.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:49:57.250 [info] <0.5680.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-3@gcreupelandt-N551VW'
+2020-09-27 16:50:08.246 [info] <0.43.0> Application lasp exited with reason: stopped
+2020-09-27 16:50:08.249 [info] <0.43.0> Application partisan exited with reason: stopped
+2020-09-27 16:50:08.288 [info] <0.6112.0>@lasp_support:start_runner:269 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'runner@gcreupelandt-N551VW'
+2020-09-27 16:50:08.288 [info] <0.6120.0>@partisan_config:init:61 Using node name: 'runner@gcreupelandt-N551VW'
+2020-09-27 16:50:08.482 [info] <0.6120.0>@partisan_sup:init:66 Partisan listening on {127,0,1,1}:47121 listen_addrs: [#{ip => {127,0,1,1},port => 47121}]
+2020-09-27 16:50:08.489 [info] <0.6170.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-09-27 16:50:08.499 [info] <0.6172.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:50:08.529 [info] <0.6175.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:50:08.549 [info] <0.6195.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-09-27 16:50:08.552 [info] <0.6195.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-09-27 16:50:08.554 [info] <0.6195.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-09-27 16:50:08.557 [info] <0.6195.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-09-27 16:50:08.560 [info] <0.6195.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-09-27 16:50:08.563 [info] <0.6195.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-09-27 16:50:08.565 [info] <0.6195.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-09-27 16:50:08.568 [info] <0.6195.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-09-27 16:50:08.574 [info] <0.6195.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-09-27 16:50:08.620 [info] <0.6195.0>@lasp_sup:init:88 Membership: false
+2020-09-27 16:50:08.623 [info] <0.6195.0>@lasp_sup:init:106 Workflow: true
+2020-09-27 16:50:08.635 [info] <0.6195.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-09-27 16:50:08.640 [info] <0.6195.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-09-27 16:50:08.643 [info] <0.6195.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-09-27 16:50:08.646 [info] <0.6195.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-09-27 16:50:08.649 [info] <0.6195.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-09-27 16:50:08.651 [info] <0.6195.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-09-27 16:50:08.654 [info] <0.6195.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-09-27 16:50:08.657 [info] <0.6195.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-09-27 16:50:08.660 [info] <0.6195.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-09-27 16:50:08.663 [info] <0.6195.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-09-27 16:50:08.671 [info] <0.6265.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.6265.0>
+2020-09-27 16:50:08.671 [info] <0.6264.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.6265.0>
+2020-09-27 16:50:08.672 [error] <0.6271.0> eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}
+2020-09-27 16:50:09.889 [info] <0.6112.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:50:09.890 [info] <0.6112.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:50:09.894 [info] <0.6112.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-1@gcreupelandt-N551VW'
+2020-09-27 16:50:11.341 [info] <0.6112.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:50:11.343 [info] <0.6112.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:50:11.347 [info] <0.6112.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-2@gcreupelandt-N551VW'
+2020-09-27 16:50:12.766 [info] <0.6112.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:50:12.767 [info] <0.6112.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:50:12.772 [info] <0.6112.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-3@gcreupelandt-N551VW'
+2020-09-27 16:50:24.316 [info] <0.43.0> Application lasp exited with reason: stopped
+2020-09-27 16:50:24.322 [info] <0.43.0> Application partisan exited with reason: stopped
+2020-09-27 16:50:24.387 [info] <0.6733.0>@lasp_support:start_runner:269 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'runner@gcreupelandt-N551VW'
+2020-09-27 16:50:24.388 [info] <0.6741.0>@partisan_config:init:61 Using node name: 'runner@gcreupelandt-N551VW'
+2020-09-27 16:50:24.566 [info] <0.6741.0>@partisan_sup:init:66 Partisan listening on {127,0,1,1}:47121 listen_addrs: [#{ip => {127,0,1,1},port => 47121}]
+2020-09-27 16:50:24.572 [info] <0.6791.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-09-27 16:50:24.584 [info] <0.6793.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:50:24.618 [info] <0.6796.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:50:24.643 [info] <0.6816.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-09-27 16:50:24.648 [info] <0.6816.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-09-27 16:50:24.653 [info] <0.6816.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-09-27 16:50:24.658 [info] <0.6816.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-09-27 16:50:24.662 [info] <0.6816.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-09-27 16:50:24.665 [info] <0.6816.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-09-27 16:50:24.669 [info] <0.6816.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-09-27 16:50:24.672 [info] <0.6816.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-09-27 16:50:24.679 [info] <0.6816.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-09-27 16:50:24.739 [info] <0.6816.0>@lasp_sup:init:88 Membership: false
+2020-09-27 16:50:24.742 [info] <0.6816.0>@lasp_sup:init:106 Workflow: true
+2020-09-27 16:50:24.754 [info] <0.6816.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-09-27 16:50:24.760 [info] <0.6816.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-09-27 16:50:24.765 [info] <0.6816.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-09-27 16:50:24.768 [info] <0.6816.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-09-27 16:50:24.771 [info] <0.6816.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-09-27 16:50:24.774 [info] <0.6816.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-09-27 16:50:24.777 [info] <0.6816.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-09-27 16:50:24.781 [info] <0.6816.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-09-27 16:50:24.785 [info] <0.6816.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-09-27 16:50:24.788 [info] <0.6816.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-09-27 16:50:24.798 [info] <0.6886.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.6886.0>
+2020-09-27 16:50:24.798 [info] <0.6885.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.6886.0>
+2020-09-27 16:50:24.799 [error] <0.6891.0> eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}
+2020-09-27 16:50:26.008 [info] <0.6733.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:50:26.009 [info] <0.6733.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:50:26.014 [info] <0.6733.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-1@gcreupelandt-N551VW'
+2020-09-27 16:50:27.478 [info] <0.6733.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:50:27.479 [info] <0.6733.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:50:27.483 [info] <0.6733.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-2@gcreupelandt-N551VW'
+2020-09-27 16:50:29.034 [info] <0.6733.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:50:29.036 [info] <0.6733.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:50:29.045 [info] <0.6733.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-3@gcreupelandt-N551VW'
+2020-09-27 16:50:39.782 [info] <0.43.0> Application lasp exited with reason: stopped
+2020-09-27 16:50:39.786 [info] <0.43.0> Application partisan exited with reason: stopped
+2020-09-27 16:50:39.821 [info] <0.7206.0>@lasp_support:start_runner:269 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'runner@gcreupelandt-N551VW'
+2020-09-27 16:50:39.822 [info] <0.7214.0>@partisan_config:init:61 Using node name: 'runner@gcreupelandt-N551VW'
+2020-09-27 16:50:40.014 [info] <0.7214.0>@partisan_sup:init:66 Partisan listening on {127,0,1,1}:47121 listen_addrs: [#{ip => {127,0,1,1},port => 47121}]
+2020-09-27 16:50:40.019 [info] <0.7264.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-09-27 16:50:40.029 [info] <0.7266.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:50:40.059 [info] <0.7269.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:50:40.079 [info] <0.7289.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-09-27 16:50:40.086 [info] <0.7289.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-09-27 16:50:40.089 [info] <0.7289.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-09-27 16:50:40.092 [info] <0.7289.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-09-27 16:50:40.095 [info] <0.7289.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-09-27 16:50:40.098 [info] <0.7289.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-09-27 16:50:40.100 [info] <0.7289.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-09-27 16:50:40.103 [info] <0.7289.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-09-27 16:50:40.109 [info] <0.7289.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-09-27 16:50:40.155 [info] <0.7289.0>@lasp_sup:init:88 Membership: false
+2020-09-27 16:50:40.158 [info] <0.7289.0>@lasp_sup:init:106 Workflow: true
+2020-09-27 16:50:40.169 [info] <0.7289.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-09-27 16:50:40.175 [info] <0.7289.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-09-27 16:50:40.178 [info] <0.7289.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-09-27 16:50:40.181 [info] <0.7289.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-09-27 16:50:40.183 [info] <0.7289.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-09-27 16:50:40.186 [info] <0.7289.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-09-27 16:50:40.189 [info] <0.7289.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-09-27 16:50:40.192 [info] <0.7289.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-09-27 16:50:40.195 [info] <0.7289.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-09-27 16:50:40.198 [info] <0.7289.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-09-27 16:50:40.210 [info] <0.7359.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.7359.0>
+2020-09-27 16:50:40.210 [info] <0.7358.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.7359.0>
+2020-09-27 16:50:40.210 [error] <0.7365.0> eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}
+2020-09-27 16:50:41.442 [info] <0.7206.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:50:41.444 [info] <0.7206.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:50:41.448 [info] <0.7206.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-1@gcreupelandt-N551VW'
+2020-09-27 16:50:42.882 [info] <0.7206.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:50:42.883 [info] <0.7206.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:50:42.887 [info] <0.7206.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-2@gcreupelandt-N551VW'
+2020-09-27 16:50:44.308 [info] <0.7206.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:50:44.309 [info] <0.7206.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:50:44.313 [info] <0.7206.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-3@gcreupelandt-N551VW'
+2020-09-27 16:50:54.720 [info] <0.43.0> Application lasp exited with reason: stopped
+2020-09-27 16:50:54.724 [info] <0.43.0> Application partisan exited with reason: stopped
+2020-09-27 16:50:54.764 [info] <0.7639.0>@lasp_support:start_runner:269 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'runner@gcreupelandt-N551VW'
+2020-09-27 16:50:54.765 [info] <0.7646.0>@partisan_config:init:61 Using node name: 'runner@gcreupelandt-N551VW'
+2020-09-27 16:50:54.978 [info] <0.7646.0>@partisan_sup:init:66 Partisan listening on {127,0,1,1}:47121 listen_addrs: [#{ip => {127,0,1,1},port => 47121}]
+2020-09-27 16:50:54.984 [info] <0.7697.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-09-27 16:50:54.995 [info] <0.7699.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:50:55.024 [info] <0.7702.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:50:55.044 [info] <0.7722.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-09-27 16:50:55.046 [info] <0.7722.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-09-27 16:50:55.049 [info] <0.7722.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-09-27 16:50:55.052 [info] <0.7722.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-09-27 16:50:55.055 [info] <0.7722.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-09-27 16:50:55.058 [info] <0.7722.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-09-27 16:50:55.061 [info] <0.7722.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-09-27 16:50:55.064 [info] <0.7722.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-09-27 16:50:55.069 [info] <0.7722.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-09-27 16:50:55.116 [info] <0.7722.0>@lasp_sup:init:88 Membership: false
+2020-09-27 16:50:55.119 [info] <0.7722.0>@lasp_sup:init:106 Workflow: true
+2020-09-27 16:50:55.130 [info] <0.7722.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-09-27 16:50:55.136 [info] <0.7722.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-09-27 16:50:55.139 [info] <0.7722.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-09-27 16:50:55.141 [info] <0.7722.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-09-27 16:50:55.144 [info] <0.7722.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-09-27 16:50:55.147 [info] <0.7722.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-09-27 16:50:55.150 [info] <0.7722.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-09-27 16:50:55.152 [info] <0.7722.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-09-27 16:50:55.155 [info] <0.7722.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-09-27 16:50:55.159 [info] <0.7722.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-09-27 16:50:55.173 [info] <0.7792.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.7792.0>
+2020-09-27 16:50:55.173 [info] <0.7791.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.7792.0>
+2020-09-27 16:50:55.174 [error] <0.7798.0> eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}
+2020-09-27 16:50:56.382 [info] <0.7639.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:50:56.383 [info] <0.7639.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:50:56.388 [info] <0.7639.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-1@gcreupelandt-N551VW'
+2020-09-27 16:50:57.835 [info] <0.7639.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:50:57.837 [info] <0.7639.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:50:57.841 [info] <0.7639.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-2@gcreupelandt-N551VW'
+2020-09-27 16:50:59.251 [info] <0.7639.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:50:59.252 [info] <0.7639.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:50:59.256 [info] <0.7639.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-3@gcreupelandt-N551VW'
+2020-09-27 16:51:09.705 [info] <0.43.0> Application lasp exited with reason: stopped
+2020-09-27 16:51:09.709 [info] <0.43.0> Application partisan exited with reason: stopped
+2020-09-27 16:51:09.769 [info] <0.8066.0>@lasp_support:start_runner:269 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'runner@gcreupelandt-N551VW'
+2020-09-27 16:51:09.770 [info] <0.8074.0>@partisan_config:init:61 Using node name: 'runner@gcreupelandt-N551VW'
+2020-09-27 16:51:09.962 [info] <0.8074.0>@partisan_sup:init:66 Partisan listening on {127,0,1,1}:47121 listen_addrs: [#{ip => {127,0,1,1},port => 47121}]
+2020-09-27 16:51:09.968 [info] <0.8124.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-09-27 16:51:09.978 [info] <0.8126.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:51:10.011 [info] <0.8129.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:51:10.031 [info] <0.8149.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-09-27 16:51:10.034 [info] <0.8149.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-09-27 16:51:10.037 [info] <0.8149.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-09-27 16:51:10.040 [info] <0.8149.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-09-27 16:51:10.043 [info] <0.8149.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-09-27 16:51:10.045 [info] <0.8149.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-09-27 16:51:10.048 [info] <0.8149.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-09-27 16:51:10.051 [info] <0.8149.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-09-27 16:51:10.057 [info] <0.8149.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-09-27 16:51:10.102 [info] <0.8149.0>@lasp_sup:init:88 Membership: false
+2020-09-27 16:51:10.105 [info] <0.8149.0>@lasp_sup:init:106 Workflow: true
+2020-09-27 16:51:10.116 [info] <0.8149.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-09-27 16:51:10.122 [info] <0.8149.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-09-27 16:51:10.125 [info] <0.8149.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-09-27 16:51:10.127 [info] <0.8149.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-09-27 16:51:10.147 [info] <0.8149.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-09-27 16:51:10.154 [info] <0.8149.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-09-27 16:51:10.157 [info] <0.8149.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-09-27 16:51:10.160 [info] <0.8149.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-09-27 16:51:10.163 [info] <0.8149.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-09-27 16:51:10.166 [info] <0.8149.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-09-27 16:51:10.178 [info] <0.8220.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.8220.0>
+2020-09-27 16:51:10.178 [info] <0.8219.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.8220.0>
+2020-09-27 16:51:10.178 [error] <0.8226.0> eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}
+2020-09-27 16:51:11.390 [info] <0.8066.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:51:11.392 [info] <0.8066.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:51:11.396 [info] <0.8066.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-1@gcreupelandt-N551VW'
+2020-09-27 16:51:12.846 [info] <0.8066.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:51:12.848 [info] <0.8066.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:51:12.852 [info] <0.8066.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-2@gcreupelandt-N551VW'
+2020-09-27 16:51:14.274 [info] <0.8066.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:51:14.275 [info] <0.8066.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:51:14.280 [info] <0.8066.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-3@gcreupelandt-N551VW'
+2020-09-27 16:51:24.753 [info] <0.43.0> Application lasp exited with reason: stopped
+2020-09-27 16:51:24.757 [info] <0.43.0> Application partisan exited with reason: stopped
+2020-09-27 16:51:24.826 [info] <0.8498.0>@lasp_support:start_runner:269 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'runner@gcreupelandt-N551VW'
+2020-09-27 16:51:24.826 [info] <0.8506.0>@partisan_config:init:61 Using node name: 'runner@gcreupelandt-N551VW'
+2020-09-27 16:51:25.012 [info] <0.8506.0>@partisan_sup:init:66 Partisan listening on {127,0,1,1}:47121 listen_addrs: [#{ip => {127,0,1,1},port => 47121}]
+2020-09-27 16:51:25.021 [info] <0.8556.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-09-27 16:51:25.032 [info] <0.8558.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:51:25.062 [info] <0.8561.0>@partisan_config:seed:160 node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+2020-09-27 16:51:25.088 [info] <0.8581.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-09-27 16:51:25.091 [info] <0.8581.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-09-27 16:51:25.093 [info] <0.8581.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-09-27 16:51:25.096 [info] <0.8581.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-09-27 16:51:25.099 [info] <0.8581.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-09-27 16:51:25.102 [info] <0.8581.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-09-27 16:51:25.104 [info] <0.8581.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-09-27 16:51:25.107 [info] <0.8581.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-09-27 16:51:25.113 [info] <0.8581.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-09-27 16:51:25.190 [info] <0.8581.0>@lasp_sup:init:88 Membership: false
+2020-09-27 16:51:25.193 [info] <0.8581.0>@lasp_sup:init:106 Workflow: true
+2020-09-27 16:51:25.204 [info] <0.8581.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-09-27 16:51:25.210 [info] <0.8581.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-09-27 16:51:25.213 [info] <0.8581.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-09-27 16:51:25.216 [info] <0.8581.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-09-27 16:51:25.218 [info] <0.8581.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-09-27 16:51:25.221 [info] <0.8581.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-09-27 16:51:25.224 [info] <0.8581.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-09-27 16:51:25.227 [info] <0.8581.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-09-27 16:51:25.230 [info] <0.8581.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-09-27 16:51:25.232 [info] <0.8581.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-09-27 16:51:25.242 [info] <0.8652.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.8652.0>
+2020-09-27 16:51:25.242 [info] <0.8651.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.8652.0>
+2020-09-27 16:51:25.242 [error] <0.8658.0> eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}
+2020-09-27 16:51:26.439 [info] <0.8498.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:51:26.441 [info] <0.8498.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:51:26.445 [info] <0.8498.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-1@gcreupelandt-N551VW'
+2020-09-27 16:51:27.865 [info] <0.8498.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:51:27.866 [info] <0.8498.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:51:27.871 [info] <0.8498.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-2@gcreupelandt-N551VW'
+2020-09-27 16:51:29.296 [info] <0.8498.0>@lasp_support:load_lasp:332 Enabling membership...
+2020-09-27 16:51:29.298 [info] <0.8498.0>@lasp_support:load_lasp:335 Disabling blocking sync...
+2020-09-27 16:51:29.302 [info] <0.8498.0>@lasp_support:load_lasp:340 Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-3@gcreupelandt-N551VW'

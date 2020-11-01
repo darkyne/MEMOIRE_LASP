@@ -1,0 +1,1 @@
+Launching 2 nodes at the same time, each generating a total of 10 values at the speed of one every 10 ms then start timmer and wait until all the values converged

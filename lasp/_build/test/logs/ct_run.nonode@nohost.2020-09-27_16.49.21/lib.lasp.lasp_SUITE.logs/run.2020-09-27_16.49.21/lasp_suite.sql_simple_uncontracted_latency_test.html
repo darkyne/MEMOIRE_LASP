@@ -1,0 +1,489 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Test lasp_SUITE:sql_simple_uncontracted_latency_test result</title>
+<meta http-equiv="cache-control" content="no-cache"></meta>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
+<link rel="stylesheet" href="../../ct_default.css" type="text/css"></link>
+<script type="text/javascript" src="../../jquery-latest.js"></script>
+<script type="text/javascript" src="../../jquery.tablesorter.min.js"></script>
+</head>
+<body>
+
+<a name="top"></a><pre>
+=== Test case: <a href="lasp_suite.src.html#sql_simple_uncontracted_latency_test-1">lasp_SUITE:sql_simple_uncontracted_latency_test/1</a> (click for source code)
+
+=== Config value:
+
+    [{watchdog,&lt;0.4698.0&gt;},
+     {tc_logfile,"/home/gcreupelandt/Documents/MEMOIRE/lasp/_build/test/logs/ct_run.nonode@nohost.2020-09-27_16.49.21/lib.lasp.lasp_SUITE.logs/run.2020-09-27_16.49.21/lasp_suite.sql_simple_uncontracted_latency_test.html"},
+     {tc_group_properties,[]},
+     {tc_group_path,[]},
+     {data_dir,"/home/gcreupelandt/Documents/MEMOIRE/lasp/_build/test/lib/lasp/test/lasp_SUITE_data/"},
+     {priv_dir,"/home/gcreupelandt/Documents/MEMOIRE/lasp/_build/test/logs/ct_run.nonode@nohost.2020-09-27_16.49.21/lib.lasp.lasp_SUITE.logs/run.2020-09-27_16.49.21/log_private/"}]
+
+=== Current directory is "/home/gcreupelandt/Documents/MEMOIRE/lasp/_build/test/logs/ct_run.nonode@nohost.2020-09-27_16.49.21"
+
+=== Started at 2020-09-27 16:50:54
+
+<br />
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:54.750 ***</b>
+Beginning case: sql_simple_uncontracted_latency_test
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:54.765 ***</b>
+16:50:54.764 [info] Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'runner@gcreupelandt-N551VW'
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:54.765 ***</b>
+16:50:54.765 [info] Using node name: 'runner@gcreupelandt-N551VW'
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:54.978 ***</b>
+16:50:54.978 [info] Partisan listening on {127,0,1,1}:47121 listen_addrs: [#{ip => {127,0,1,1},port => 47121}]
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:54.984 ***</b>
+16:50:54.984 [info] Not using container orchestration; disabling.
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:54.995 ***</b>
+16:50:54.995 [info] node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.024 ***</b>
+16:50:55.024 [info] node 'runner@gcreupelandt-N551VW' choosing random seed: {98832795,-576460730346715006,-576460752303423455}
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.044 ***</b>
+16:50:55.044 [info] Setting jitter: false
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.046 ***</b>
+16:50:55.046 [info] Setting jitter percent: 1
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.049 ***</b>
+16:50:55.049 [info] Setting event interval: 0
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.052 ***</b>
+16:50:55.052 [info] Setting max events: 1000
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.055 ***</b>
+16:50:55.055 [info] Setting extended logging: false
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.058 ***</b>
+16:50:55.058 [info] Setting mailbox logging: false
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.061 ***</b>
+16:50:55.061 [info] Setting operation mode: state_based
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.064 ***</b>
+16:50:55.064 [info] Setting set type: orset
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.069 ***</b>
+16:50:55.069 [info] Setting broadcast: false
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.116 ***</b>
+16:50:55.116 [info] Membership: false
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.119 ***</b>
+16:50:55.119 [info] Workflow: true
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.130 ***</b>
+16:50:55.130 [info] AdClientEnabled: false
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.136 ***</b>
+16:50:55.136 [info] AdServerEnabled: false
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.139 ***</b>
+16:50:55.139 [info] TournClientEnabled: false
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.141 ***</b>
+16:50:55.141 [info] TournServerEnabled: false
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.144 ***</b>
+16:50:55.144 [info] ThroughputType: gset
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.147 ***</b>
+16:50:55.147 [info] ThroughputClientEnabled: false
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.150 ***</b>
+16:50:55.150 [info] ThroughputServerEnabled: false
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.153 ***</b>
+16:50:55.152 [info] DivergenceType: gcounter
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.156 ***</b>
+16:50:55.155 [info] DivergenceClientEnabled: false
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.159 ***</b>
+16:50:55.159 [info] DivergenceServerEnabled: false
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.173 ***</b>
+16:50:55.173 [info] Backend initialized with pid: <0.7792.0>
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.173 ***</b>
+16:50:55.173 [info] Backend lasp_ets_storage_backend initialized: <0.7792.0>
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during lasp_SUITE:sql_simple_uncontracted_latency_test/1 2020-09-27 16:50:55.174 ***</b>
+=ERROR REPORT==== 27-Sep-2020::16:50:55.174030 ===
+eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,
+                                                               econnrefused}
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:55.225 ***</b>
+16:50:55.174 [error] eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:56.268 ***</b>
+Loading applications on node: 'node-1@gcreupelandt-N551VW'
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:56.382 ***</b>
+16:50:56.382 [info] Enabling membership...
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:56.384 ***</b>
+16:50:56.383 [info] Disabling blocking sync...
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:56.388 ***</b>
+16:50:56.388 [info] Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-1@gcreupelandt-N551VW'
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:57.716 ***</b>
+Loading applications on node: 'node-2@gcreupelandt-N551VW'
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:57.835 ***</b>
+16:50:57.835 [info] Enabling membership...
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:57.837 ***</b>
+16:50:57.837 [info] Disabling blocking sync...
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:57.841 ***</b>
+16:50:57.841 [info] Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-2@gcreupelandt-N551VW'
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:59.141 ***</b>
+Loading applications on node: 'node-3@gcreupelandt-N551VW'
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:59.251 ***</b>
+16:50:59.251 [info] Enabling membership...
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:59.252 ***</b>
+16:50:59.252 [info] Disabling blocking sync...
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:59.256 ***</b>
+16:50:59.256 [info] Configured peer_service_manager partisan_pluggable_peer_service_manager on node 'node-3@gcreupelandt-N551VW'
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:50:59.482 ***</b>
+Joining node: 'node-3@gcreupelandt-N551VW' to 'runner@gcreupelandt-N551VW' at listen_addr [#{ip =>
+                                                                                                 {127,
+                                                                                                  0,
+                                                                                                  1,
+                                                                                                  1},
+                                                                                             port =>
+                                                                                                 55861}]
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:51:00.495 ***</b>
+Joining issued: 'node-3@gcreupelandt-N551VW' to 'runner@gcreupelandt-N551VW' at listen_addrs [#{ip =>
+                                                                                                    {127,
+                                                                                                     0,
+                                                                                                     1,
+                                                                                                     1},
+                                                                                                port =>
+                                                                                                    55861}]
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:51:00.496 ***</b>
+Joining node: 'node-2@gcreupelandt-N551VW' to 'runner@gcreupelandt-N551VW' at listen_addr [#{ip =>
+                                                                                                 {127,
+                                                                                                  0,
+                                                                                                  1,
+                                                                                                  1},
+                                                                                             port =>
+                                                                                                 57015}]
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:51:01.553 ***</b>
+Joining issued: 'node-2@gcreupelandt-N551VW' to 'runner@gcreupelandt-N551VW' at listen_addrs [#{ip =>
+                                                                                                    {127,
+                                                                                                     0,
+                                                                                                     1,
+                                                                                                     1},
+                                                                                                port =>
+                                                                                                    57015}]
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:51:01.554 ***</b>
+Joining node: 'node-1@gcreupelandt-N551VW' to 'runner@gcreupelandt-N551VW' at listen_addr [#{ip =>
+                                                                                                 {127,
+                                                                                                  0,
+                                                                                                  1,
+                                                                                                  1},
+                                                                                             port =>
+                                                                                                 55803}]
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:51:02.586 ***</b>
+Joining issued: 'node-1@gcreupelandt-N551VW' to 'runner@gcreupelandt-N551VW' at listen_addrs [#{ip =>
+                                                                                                    {127,
+                                                                                                     0,
+                                                                                                     1,
+                                                                                                     1},
+                                                                                                port =>
+                                                                                                    55803}]
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:51:02.647 ***</b>
+Waiting for join to complete with manager: partisan_pluggable_peer_service_manager
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:51:02.651 ***</b>
+Finished.
+</pre></div>
+<pre>
+</pre>
+<div class="ct_internal"><pre><b>*** CT 2020-09-27 16:51:02.651 *** COVER INFO</b>
+Adding nodes to cover test: ['runner@gcreupelandt-N551VW']
+</pre></div>
+<pre>
+</pre>
+<div class="ct_internal"><pre><b>*** CT 2020-09-27 16:51:02.661 *** COVER INFO</b>
+Successfully added nodes to cover test: []
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:51:02.661 ***</b>
+Case finished: sql_simple_uncontracted_latency_test
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:51:09.706 ***</b>
+16:51:09.705 [info] Application lasp exited with reason: stopped
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during lasp_SUITE:sql_simple_uncontracted_latency_test/1 2020-09-27 16:51:09.706 ***</b>
+=INFO REPORT==== 27-Sep-2020::16:51:09.705706 ===
+    application: lasp
+    exited: stopped
+    type: temporary
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="default"><pre><b>*** User 2020-09-27 16:51:09.710 ***</b>
+16:51:09.709 [info] Application partisan exited with reason: stopped
+
+</pre></div>
+<pre>
+
+</pre>
+<div class="sasl"><pre><b>*** System report during lasp_SUITE:sql_simple_uncontracted_latency_test/1 2020-09-27 16:51:09.710 ***</b>
+=INFO REPORT==== 27-Sep-2020::16:51:09.709745 ===
+    application: partisan
+    exited: stopped
+    type: temporary
+
+</pre></div>
+<pre>
+<a name="end"></a>
+
+
+=== Ended at 2020-09-27 16:51:09
+=== successfully completed test case
+=== === Returned value: ok
+</pre>
+<center>
+<br /><hr /><p>
+<a href="../../../all_runs.html">Test run history
+</a>  |  <a href="../../../index.html">Top level test index
+</a>  |  <a href="../../../suite.log.latest.html">Latest test result</a>
+</p>
+<div class="copyright">Copyright &copy; 2020 <a href="http://www.erlang.org">Open Telecom Platform</a><br />
+Updated: <!--date-->Sun Sep 27 2020 16:50:54<!--/date--><br />
+</div>
+</center>
+</body>
+</html>

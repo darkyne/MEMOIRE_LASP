@@ -1,0 +1,21 @@
+Error: {case_clause,{ok,[]}}
+[{rebar_otp_app,validate_app,2,
+                [{file,"/tmp/cirrus-ci-build/src/rebar_otp_app.erl"},
+                 {line,74}]},
+ {rebar_prv_compile,compile,3,
+                    [{file,"/tmp/cirrus-ci-build/src/rebar_prv_compile.erl"},
+                     {line,176}]},
+ {rebar_prv_compile,'-copy_and_build_project_apps/3-lc$^2/1-2-',3,
+                    [{file,"/tmp/cirrus-ci-build/src/rebar_prv_compile.erl"},
+                     {line,119}]},
+ {rebar_prv_compile,handle_project_apps,2,
+                    [{file,"/tmp/cirrus-ci-build/src/rebar_prv_compile.erl"},
+                     {line,69}]},
+ {rebar_prv_compile,do,1,
+                    [{file,"/tmp/cirrus-ci-build/src/rebar_prv_compile.erl"},
+                     {line,50}]},
+ {rebar_core,do,2,
+             [{file,"/tmp/cirrus-ci-build/src/rebar_core.erl"},{line,154}]},
+ {rebar3,run_aux,2,[{file,"/tmp/cirrus-ci-build/src/rebar3.erl"},{line,182}]},
+ {rebar3,main,1,[{file,"/tmp/cirrus-ci-build/src/rebar3.erl"},{line,66}]}]
+

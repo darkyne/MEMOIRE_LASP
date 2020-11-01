@@ -1,0 +1,182 @@
+Articles que j'ai lus:
+
+1) Erlang (condensed): 
+ok informations sur la syntaxe en Erlang
+
+-----------------------------------------------------------------------
+
+2) RR Conflict free replicated data types:
+Approche SEC (Strongly Eventually Consistant).
+Pour être SEC, il faut être eventually consistent et en plus avoir la propriété suivante:
+Les correct replicas qui ont delivered les mêmes updates doivent avoir des states equivalents.
+Différentiation entre CvRDT (state-based) et CmRDT (operation-based that requires operations to be commutative).
+SEC permets le meilleur comprimis dans le CAP theorem car il permet une haute availability, partition resilient et et une relativement bonne consistance. C'est à dire qu'on n'a pas le
+strong conssitency mais on a toujours du strong eventual convergence. Donc probablement le meilleur compris du CAP theorem.
+En fin de compte CvRDT ou CmRDT revient au même car l'un peut émuler l'autre.
+Dans le cas d'un set dans lequel on peut add ou remove des éléments, le cas d'un add et d'une remove concurents sur le même élément est réglé par une convention décidée au préalable.
+Par exemple c'est le add qui l'emporte, ou c'est le remove, ou encore c'est l'opération émise par le node de plus grand ID, bref peu importe mais une convention doit être décidée au préalable, on a alors un comportement SEC. 
+Le add-only set est le CRDT le plus évident. Un set où on peut add ou remove est aussi simple à implémenter via deux add-only sets (l'un représentant les éléments présents et l'autre les éléments retirés), on appelle ça un U-set. Ce set, afin d'éviter une croissance infinie en taille requiert un garbage collector. 
+Possibilité de faire un oriented graph sur base de CRDT, en soit on peut créer un CRDT qui représente un oriented graph.
+Au final, un CRDT est une donnée partagée qui est assurée de converger vers un correct common state sans avoir besoin de synchronisation tierse/consensus/etc et ce sur un asynchronous web.
+
+-----------------------------------------------------------------------
+
+3) Lasp: A Language for Distributed, Coordination-Free Programming (ppdp-2015.pdf):
+CRDT are distributed data types that are designed to support temporary divergence at each replica, while guaranteeing that once all updates are
+delivered to all replicas of a given object they will converge to the same state.
+En lasp, un update va être appliqué d'abord sur l'état sur la copie locale ensuite l'état va être envoyé aux autres replicas qui vont merge le state reçu avec leur state actuel. 
+Quand tous les updates ont été delivered aux replicas, toutes les replicas ont le même state. Le merge doit évidemment être déterministic.
+Le Or-set, qui permet d'ajouter ou retirer un élément, est composé d'un set (donc une multitude) de triplets (v,a,r). v représente la valeur, a est le add-set et r est le remove-set.
+a et r permettent d'appliquer les mutations (add ou remove). 
+API Lasp (page4): update, que représente le a? read, que représente le v ? Est-ce que ce qu'on appelle "value" fait en face référence au order (causalité etc) et pas à valeur assignée à la variable (au sens commun).
+
+-----------------------------------------------------------------------
+
+4) Practical Evaluation of the Lasp programming model: (ppdp-2017.pdf)
+La façon dont Lasp a été évalué avec 1024 nodes est super intéressante. La mise en pratique (logistique) au niveau des VM, des workloads associés à chaque client, des mesures et de l'écriture des logss qui sont ensuite centralisés pour analyser les mesures... La mise en place de tout ce système a l'air un peu compliqué en pratique. Est-ce ce genre de mesures que vous attendez de moi ?
+Partisan est une librairie Erlang opensource qui offre une alternative au distributed Erlang pour le communication layer.
+Le W-CRDT a l'air idéal dans l'optique de mon mémoire. 
+Les flags des nodes ont également l'air super intéressants ! Le W-CRDT permet déjà de marquer un node quand il a convergé.
+
+-----------------------------------------------------------------------
+
+5) Master thesis Lasp on Grisp:
+Pas lu en entier mais la partie qui parle de la convergence et de la façon expérimentale dont ils ont mesuré cette convergence est super intéressante !
+Regarder la documentation de achlys est aussi très intéressant et il y a un peu plus de détails/tutoriels/explications que sur le site de lasp.
+
+
+-----------------------------------------------------------------------
+
+6) MOOC:
+
+1: (11)
+Grosse différence par rapport à eventual consistency! Strong Eventual Consistency = Si N replicas deliver les mêmes updates mais pas spécialement dans le même ordre, elles obtiennent toutes le même state. (De plus, dans le cas de Lasp, la synchronisation se fait de replica en replica du coup c'est peu contraignant au niveau synchronisation). Ce compromis permet une weak synchronisation tout en gardant de très bonnes propriétés rendant la programmation facile (proche du strong consistency).
+En pratique, ce qui est bien avec les CRDT c'est qu'il faut juste que tous les nodes reçoivent les updates et peu importe l'ordre de delivery, tous les nodes auront le même state !
+Puisqu'on a un merge (join) qui permet de résoudre de façon déterministic les states, il suffit que les nodes merge tous les messages de statse reçus et on obtient fatalement les mêmes states partout !
+
+2: (12)
+Super intéressant sur la structure d'un CRDT!
+Le premier S est la configuration (représente le state de tous les replicas). Toujours pas très clair concernant ce qu'est la "value". Ok une opération aura toujours comme effet de inflate la value mais on n'a toujours pas définie ou représenté cette value...
+
+3: (13)
+J'ai toujours un peu de mal avec l'explication du OR-set. Dans l'exemple, si j'ai bien compris, le a ou le b est un identifiant unique basé sur l'élément et le node qui fait l'opération...?
+
+4: (21)
+L'explication pour le OR-set est plus clair et m'a permis de comprendre.
+Composition problem: quand on décide de lire la value et de faire une opération dessus, on se retrouve avec une valeur qui n'est plus accompagnée de ses meta-data. Et alors on peut se retrouver avec des trucs qui ne convergent pas. C'est assez bien expliqué dans la vidéo.
+Le problème en gros c'est que si on utilise la value du CRDT puis que cette value doit changer parce que d'autres ont update ou que ça n'avait pas encore convergé... Bah l'output de notre computation n'est plus correcte. Il faudrait alors attendre que ça ait complettement convergé et ne bouge plus avant de pouvoir faire une computation sur base du CRDT? Ce serait débile.
+
+5: (22)
+Comment read la value et l'utiliser sans casser le "safe world" ?
+Solution: lattice processing ("Or Lasp for short" ??). En fait on va voir le CRDT comme un stream de states qui grossit.
+Avec Lasp, on va du coup utiliser des fonctions qui vont prendre un stream, appliquer la fonction demandée et output un stream.
+Ca répond à ma question4 !
+
+6: (23)
+Pour un CRDT donné, par exemple un OR-set, chaque replica est comme un stream de states. Et Lasp permet de lire ce stream (toujours grandissant).
+Très bien expliqué dans la vidéo. En gros, ça map les metadata aussi.
+Même si plein de messages sont perdus, tant que quelques messages du state final sont delivered, tous les noeuds convergent bien ainsi que leurs maps !
+
+7: (24)
+En gros pour map, on applique la fonction à la value et on copie simplement les metadata.
+Du coup même si la value n'est plus présente par exemple car added et removed, le map va s'appliquer sur la value mais les meta-data permettront de savoir que cet élément n'est pas présent.
+Bref c'est clair dans la vidéo.
+
+8: (25)
+Explication du ads-counter.
+
+9: (26)
+Anabranch is for state dissemination and cluster topology/membership.
+Ca essaye d'envoyer des updates les plus minimalistes possibles afin de ne pas surcharger la taille des sets qui pourraient devenir énorme. Du coup ça met uniquement les données intéressantes/qui ont changé et pas tout ce qui reste inchangé.
+
+10: (31)
+Explication du cas general de cloud classique avec quelques datacenters répliqués.
+Rappel du CAP theorem. CP >< AP
+
+11: (32)
+Importance du causal order. Principe de transaction.
+
+12: (33)
+Introduction de antidote.
+C'est AP tout en étant le plus consistent possible. Transactional causal consistency. Ca utilise des CRDT.
+
+13: (41)
+Récap, résumé des idées précédentes.
+On peut pas faire CAP mais on peut faire AP et Convergent (convergent au lieu de consistent).
+Lasp est bien pour edge-computing. Ca demande pas de lourde synchronisation, c'est fault tolerant.
+Dans le système lui-même, tout est synchronization-free et il n'y a qu'aux limites (entrées/sorties) du système qu'on a besoin de synchronization. 
+Tous les services à l'intérieur du système doivent avoir un asynchronous stream in/out et les internal states obéissent au SEC property.
+
+
+
+======================================================================
+
+Questions:
+
+1) Qu'est-ce qu'un "lattice" ? Je n'ai pas vraiment compris l'équivalent en français. Une propriété?
+
+Question1 => OK Ensemble qui ne fait que croitre
+
+2) Appliquer add sur un or-set, je ne vois pas ce que représente le "u" (constante unique gérée par le add).
+C'est à la page3 définition 2.6 du fichier ppdp-2015.pdf. On définit add(s_i,v) et ça implique d'ajouter u dans l'ensemble a. Mais je ne vois pas d'où sort ce u.
+J'ai un peu de mal avec les définitions de add et remove. Ce serait intéressant de revenir brièvement dessus.
+Pareil pour la différence entre internal représentation et external representation de la value.
+Si j'ai bien compris, ce qu'on appelle "value" n'est pas vraiment la valeur de la variable qui va être retournée et utilisée par le programmeur mais plutôt sa value dans le sens ordinal.
+
+Question2 => Ok le u est un token unique lié à la value ajouée et à la replica source.
+
+3) A propos du monotonic read, il faut passer en argument une value et ça bloquera tant que ça n'aura pas lu une valeur plus grande. C'est à dire un truc plus récent. Mais comment spécifier l'argument (quelle valeur donner) ?
+
+Question3 => Pas encore de solution claire
+
+4) Functionnal programming: map, filter, fold. Set-theoric functions: product, union, intersection. A chaque ça fois, ça dit que ça ne termine jamais. Exemple: The product function defines a process that never
+terminates... Qu'est-ce que ça veut dire exactement?
+
+Question4 => Voir MOOD vidéo5. En fait on process un stream d'input vers un stream output de façon à ce que à tout moment si un élément change, nos données changent.
+
+5) Définition de delivery, je ne comprends. Ce serait pas i' plutôt que i dans la phrase? J'ai du mal à comprendre cette définition.
+
+Question5 => Toujours pas très clair.
+
+6) Deux conditions pour garantir déterminisme peu importe le merge schedule:
+-Remove(v) que s'il y a d'abord un add(v).
+-Pas de add(v) avec la même value sur deux réplicas différents.
+Ok mais que représente exactement value.
+
+Question6 => Toujours pas très clair.
+
+7) Dans la vidéo 2 du MOOC, je n'ai pas bien compris la valeur de retour de la fonction "value" mais je ne pense pas que ce soit bien grave. Enfait ok.
+
+Question7 => ok Le "." signifiait simplelement indice
+
+8) Vu que la synchronisation se fait de replica-en-replica lorsqu'ils envoient leur state pour merge... Par exemple si un node update le CRDT puis c'est tout. Ne devrait-on pas avoir par exemple un node a convergé puis deux puis trois puis 4...? Au lieu de ça, d'après les premières mesures, que j'avais faites de façon naïves, j'avais tous les nodes convergés d'un coup au bout de 8 secondes... Est-ce normal ? 
+
+Question8 => Probablement un broadcast dès qu'un node a la valeur.
+
+9) Pourquoi ne pas donner ce MOC à la fin du cours de distributed algo? C'est super intéressant, bien expliqué, compréhensible facilement avec les bases du cours de Distrbuted Algo...
+Par exemple ça pourrait être donné vers la fin du cours (S12-13), c'est 13 vidéos qui dépassent pas 10min, honnêtement ça pourrait les intéreser, je pense.
+
+Question9 => Droits.
+
+======================================================================
+
+Remarques:
+Monotonic read veut dire que si on lit une variable une fois, la fois suivante qu'on la lit on ne peut pas voir une valeur antiérieure à celle déjà lue. En gros, un read ne peut pas retourner une valeur antérieur à la valeur déjà lue (bref ça va dans le sens chronologie ça ne peut pas remonter le temps).
+Appliquer un update sur un replica = mutation = inflation car le state est greater comparé à l'ancien state. En gros ça permet le monotonic read, chaque nouveau state est plus "grand" que le précédent.
+
+Ads counter using Lasp est disponnible dans le dossier test ! Ca peut servir à lire un exemple concret qui utilise Lasp (pas juste de petits bouts de code).
+
+Pour Lasp, ils ont décidé que c'est le add qui win si on a un add et un remove concurrants.
+
+======================================================================
+
+Ce que j'ai fait:
+1)Lire les articles. Seul celui Lasp or Grisp (de 138pages) que j'ai seulement survolé.
+
+2)Me plonger dans le code source de Lasp (lire tout le code source et noter ce qui pourrait me servir)
+
+3)Modifier mon script de test de façon à faire des appels corrects avec les méthodes implémentées en lasp.
+Par exemple monotonic read qui block jusqu'à ce que la variable ait atteint une certaine valeur. Plutôt qu'une while dégueulasse !
+
+4)Obtenir un accès SSH vers un serveur pour former un cluster entre nodes locaux et nodes externes. EN COURS (accès ssh obtenu le 7 octobre).
+

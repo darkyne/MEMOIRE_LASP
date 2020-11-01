@@ -1,0 +1,32 @@
+language: erlang
+otp_release:
+  - 21.2.5
+  - 20.3
+  - 19.3
+install:
+  - wget https://s3.amazonaws.com/rebar3/rebar3 && chmod u+x rebar3
+  - REBAR=./rebar3 make
+  - ./rebar3 update
+before_script:
+  - epmd -daemon
+services:
+  - redis-server
+script:
+  - REBAR=./rebar3 make eunit
+  - REBAR=./rebar3 make xref
+  - REBAR=./rebar3 make ct
+  - REBAR=./rebar3 make peer-to-peer-ad-counter-simulation
+  - REBAR=./rebar3 make client-server-ad-counter-simulation
+  - REBAR=./rebar3 make peer-to-peer-game-tournament-simulation
+  - REBAR=./rebar3 make client-server-game-tournament-simulation
+notifications:
+  email: christopher.meiklejohn@gmail.com
+  slack: lasp-lang:hiPRNnbUa3zdGrrXZfGRAF7D
+  irc: "irc.freenode.org#lasp-lang"
+  webhooks: 
+      urls:
+          - https://webhooks.gitter.im/e/1382c852fbaf2633033a
+sudo: false
+env:
+  global:
+    - OMIT_HIGH_ULIMIT=true

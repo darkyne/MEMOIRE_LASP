@@ -1,0 +1,794 @@
+RDV5 20-10-20
+
+Objectifs:
+
+Communication entre nodes sur deux machines différentes.
+Implémentation du ORSWOT.
+
+
+ETAT ACTUEL:
+
+REMOTE NODES:
+Node lasp sur mon ordi et node lasp sur raspi:
+Attempt received from disallowed node.
+Problème de sécurité.
+RESOLU !
+Il fallait avoir le même erlang_cookie sur les deux machines.
+Maintenant j'arrive à les cluster correctement !
+
+
+ORSWOT:
+Il y a déjà vector clock implémenté en Lasp. Voir fichier lasp_vclock.erl
+
+Il faut faire un fichier state_orswot_ext.erl pour y définir les méthodes intersect, map, union, product et filter.
+
+J'ai du mal à comprendre la structure du projet (dans le code).
+Où définir le ORSWOT, la façon d'ajouter/retirer un élément et le merge?
+J'essaye de trouver où c'est fait pour le orset mais je ne trouve nulle part !
+
+=============================================================
+Compréhension actuelle du code:
+=============================================================
+
+lasp.app.src:
+Structure du projet avec modules à lancer pour rebar3.
+
+=============================================================
+lasp_app.erl:
+-module(lasp_app).
+-behaviour(application).
+-include("lasp.hrl").
+-export([start/2, stop/1]).
+Définition du start et stop.
+
+=============================================================
+lasp.hrl (utilisé en "include" dans d'autres fichiers):
+
+Pas certain de ce que représente ce fichier.
+Ce serait la définition de la plupart des macros ?
+
+=============================================================
+lasp.erl:
+-module(lasp).
+include lasp.hrl (why?)
+-export([reset/0,
+         propagate/1]).
+-export([bind/4,
+         declare/1,
+         declare_dynamic/1]).
+-export([stream/2,
+         query/1,
+         declare/2,
+         declare_dynamic/2,
+         update/3,
+         bind/2,
+         bind_to/2,
+         read/2,
+         read_any/1,
+         filter/3,
+         map/3,
+         product/3,
+         union/3,
+         intersection/3,
+         fold/3,
+         wait_needed/2,
+         thread/3]).
+-export([interested/1,
+         disinterested/1,
+         set_topic/2,
+         remove_topic/2]).
+-export([invariant/3,
+         enforce_once/3]).
+Définit et export une multitude de méthodes:
+stream, query, declare, declare_dynamic, update, bind, bind_to, read, read_any, filter, map, product, union, ...
+Toutes ces définitions sont de la forme: functionX(...) -> do(functionX,...).
+Définition de do: 
+do(Function, Args) ->
+    Backend = lasp_config:get(distribution_backend,
+                              lasp_distribution_backend),
+    erlang:apply(Backend, Function, Args).
+
+=============================================================
+lasp_config.erl:
+-module(lasp_config).
+include lasp.hrl (why?)
+Définit et export dispatch, set, get, peer_service_manager et web_config.
+Définition set et get:
+get(Key, Default) ->
+    lasp_mochiglobal:get(Key, Default).
+
+set(Key, Value) ->
+    application:set_env(?APP, Key, Value),
+    lasp_mochiglobal:put(Key, Value).
+
+
+=============================================================
+lasp_console.erl:
+-module(lasp_console).
+-export([join/1]).
+Définition du join: appelle JoinFn et affiche un texte en fonction de la valeur de retour.
+
+=============================================================
+lasp_core.erl:
+-module(lasp_core).
+include lasp.hrl (why?)
+Définition et export d'une multitude de méthodes:
+-export([bind/3,
+         bind/4,
+         bind_to/3,
+         read/2,
+         read/3,
+         read_any/2,
+         declare/1,
+         declare/2,
+         declare/3,
+         declare/4,
+         declare/5,
+         declare_dynamic/4,
+         query/2,
+         stream/3,
+         update/4,
+         update/6,
+         update_metadata/5,
+         thread/4,
+         filter/4,
+         map/4,
+         product/4,
+         union/4,
+         intersection/4,
+         fold/4,
+         wait_needed/2,
+         wait_needed/3,
+         reply_to_all/2,
+         reply_to_all/3,
+         receive_value/2,
+         receive_delta/2]).
+//Dynamic:
+-export([bind_to/4,
+         bind_to/5,
+         wait_needed/6,
+         read/6,
+         filter/6,
+         map/6,
+         product/7,
+         union/7,
+         intersection/7,
+         fold/6]).
+-export([read_var/3,
+         bind_var/3]).
+-export([storage_backend_reset/1]).
+-export([enforce_once/4]).
+A noter que certaines méthodes font appel à lasp_type:uneAutreMethode et cette autreMethode, dans le fichier lasp_type.erl, a elle-même un comportement qui dépend du type du crdt qu'il détecte en appliquant, par exemple:
+Mode = get_mode(),
+T = get_type(remove_args(Type), Mode)
+T représente probablement quelque chose comme orset, awmap, etc...
+
+Globalement la plupart des méthodes qui sont définies font appel à ?MODULE:uneMethode. Que fait exactement la macro liée à MODULE ? Je ne trouve pas où c'est défini.
+Dans bind_var on utilise un appel à lasp_type:merge. Ce merge, lui-même dans lasp_type, fait appel à T:merge avec T le type du crdt. Mais où est défini ce merge? Je ne trouve pas. Pareil pour T:query.
+Je ne trouve pas le fichier qui définit les méthodes genre add, remove, merge, etc pour les différents types de crdt.
+
+=============================================================
+lasp_delta_based_synchronization_backend.erl:
+-module(lasp_delta_based_synchronization_backend).
+-behaviour(gen_server).
+-behaviour(lasp_synchronization_backend).
+include lasp.hrl (why?)
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Incompréhensible
+
+=============================================================
+lasp_dependence_dag.erl:
+-module(lasp_dependence_dag).
+-include("lasp.hrl").(why?)
+-behaviour(gen_server). (what does it mean?)
+-export([start_link/0,
+         will_form_cycle/2,
+         is_root/1,
+         vertices/0,
+         add_edges/6,
+         add_vertex/1,
+         add_vertices/1]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Incompréhensible. Semble se charger de la création d'un graphe ?
+
+=============================================================
+lasp_dets_storage_backend.erl:
+-module(lasp_dets_storage_backend).
+-behaviour(gen_server).
+-behaviour(lasp_storage_backend).
+-include("lasp.hrl").
+-export([start_link/1,
+         put/3,
+         update/3,
+         update_all/2,
+         get/2,
+         reset/1,
+         fold/3]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+pas clair. Quel est le but ?
+Pourquoi ça redéfinit les mêmes methodes à export que dans lasp_dependence_dag.erl ?
+
+=============================================================
+lasp_distribution_backend.erl:
+-module(lasp_distribution_backend).
+-behaviour(gen_server).
+-include("lasp.hrl").
+-export([reset/0, 
+         propagate/1]).
+-export([start_link/0,
+         start_link/1]).
+-export([declare/2,
+         declare_dynamic/2,
+         stream/2,
+         query/1,
+         update/3,
+         bind/2,
+         bind_to/2,
+         read/2,
+         read_any/1,
+         filter/3,
+         map/3,
+         product/3,
+         union/3,
+         intersection/3,
+         fold/3,
+         wait_needed/2,
+         thread/3,
+         enforce_once/3]).
+-export([interested/1,
+         disinterested/1,
+         set_topic/2,
+         remove_topic/2]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Pourquoi on redéfinit des méthodes déjà définies dans d'autres fichiers?
+Qu'est-ce que gen_server ?
+
+=============================================================
+lasp_divergence_client.erl:
+-module(lasp_divergence_client).
+-behaviour(gen_server).
+-include("lasp.hrl").
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Je ne comprends pas trop ce fichier.
+A noter qu'à la fin la méthode perform_update a l'air d'appliquer le update différemment pour chaque type de crdt.
+Il y a plein d'utilsations de macro mais je ne vois pas où elles sont définies. 
+
+=============================================================
+lasp_divergence_server.erl:
+-module(lasp_divergence_server).
+-behaviour(gen_server).
+-include("lasp.hrl").
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Ca a l'air de tester la convergence. On a notamment le workflow qui est completed quand ça a convergé, je crois...?
+
+=============================================================
+lasp_dt.erl:
+-module(lasp_dt).
+-include("lasp.hrl").
+Pas compris le but.
+
+=============================================================
+lasp_eqc.erl:
+-module(lasp_eqc).
+Pas trop compris mais ça a l'air de se lancer uniquement si si on est en mode TEST et EQC. (que veut dire EQC ?)
+
+=============================================================
+lasp_ets_storage_backend.erl:
+-module(lasp_ets_storage_backend).
+-behaviour(gen_server).
+-behaviour(lasp_storage_backend).
+-include("lasp.hrl").
+-export([start_link/1,
+         put/3,
+         update/3,
+         update_all/2,
+         get/2,
+         reset/1,
+         fold/3]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+A nouveua, on redéfinit pour la xème fois les mêmes méthodes à export...
+Pour la plupart des méthodes, ça fait appel à gen_server.
+
+=============================================================
+lasp_logger:
+-module(lasp_logger).
+Sert à simplement à écrire des messages d'information.
+
+=============================================================
+lasp_marathon_simulation.erl:
+-module(lasp_marathon_simulations).
+-export([stop/0,
+         log_message_queue_size/1]).
+Aucune idée de ce que ça fait.
+
+=============================================================
+lasp_membership.erl:
+-module(lasp_membership).
+-include("lasp.hrl").
+-export([start_link/0,
+         start_link/1]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+
+Je pense que c'est lié à lasp_peer_service:members().
+
+=============================================================
+lasp_memory_utilization_report.erl:
+-module(lasp_memory_utilization_report).
+-behaviour(gen_server).
+-include("lasp.hrl").
+-export([start_link/0,
+         start_link/1]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Pas trop compris mais je ne pense pas que ce soit utile pour moi.
+
+=============================================================
+lasp_mochiglobal.erl:
+-module(lasp_mochiglobal).
+-export([get/1, get/2, put/2, delete/1]).
+auteur: Bob Ippolito
+Définit un get, put, delete mais tèrs bizarre.
+Je ne pense pas que ce soit utile dans mon cas.
+
+=============================================================
+lasp_operations.erl:
+-module(lasp_operations).
+-export([inverse/2]).
+OK
+
+=============================================================
+lasp_partisan_peer_service.erl:
+-module(lasp_partisan_peer_service).
+-behaviour(lasp_peer_service).
+-include("lasp.hrl").
+-export([join/1,
+         join/2,
+         join/3,
+         leave/0,
+         members/0,
+         manager/0,
+         stop/0,
+         stop/1]).
+Utile pour joindre les nodes, au niveau communication et partisan.
+
+=============================================================
+lasp_peer_service.erl:
+-module(lasp_peer_service).
+-include("lasp.hrl").
+-export([join/1,
+         join/2,
+         join/3,
+         leave/0,
+         members/0,
+         manager/0,
+         stop/0,
+         stop/1]).
+Fait la même chose que lasp_partisan_peer_service.erl mais en passant par do. Enfin je crois.
+
+=============================================================
+lasp_plumtree_backend.erl:
+-module(lasp_plumtree_backend).
+-behaviour(plumtree_broadcast_handler).
+-export([start_link/0,
+         start_link/1]).
+-export([broadcast_data/1,
+         merge/2,
+         is_stale/1,
+         graft/1,
+         exchange/1]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+-export([extract_log_type_and_payload/1]).
+Semble gérer les heartbeat entre nodes.
+Semble gérer la partie création de graphe entre les nodes?
+
+=============================================================
+lasp_plumtree_memory_report.erl:
+-module(lasp_plumtree_memory_report).
+-behaviour(gen_server).
+-include("lasp.hrl").
+-export([start_link/0,
+         start_link/1]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Ne semble pas important dans mon cas.
+
+=============================================================
+lasp_process.erl:
+-module(lasp_process).
+-behaviour(gen_flow).
+-include("lasp.hrl").
+-export([start_link/1,
+         start_dag_link/1,
+         start_manual_process/1,
+         single_fire_function/4,
+         start_single_fire_process/1]).
+-export([init/1, read/1, process/2]).
+
+Qu'est-ce que dag? 
+Je ne comprends pas gen_read_fun().
+
+=============================================================
+lasp_process_sup.erl:
+-module(lasp_process_sup).
+-behaviour(supervisor).
+-export([start_link/0,
+         start_child/1,
+         start_child/2,
+         terminate/0,
+         terminate_child/2]).
+-export([init/1]).
+Ca fait appel au supervisor pour lancer les méthodes. Sauf pour init (que je ne comprends pas).
+
+=============================================================
+lasp_redis_storage_backend.erl:
+-module(lasp_redis_storage_backend).
+-behaviour(gen_server).
+-behaviour(lasp_storage_backend).
+-include("lasp.hrl").
+-export([start_link/1,
+         put/3,
+         update/3,
+         update_all/2,
+         get/2,
+         reset/1,
+         fold/3]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Fait appel à gen_server:call(blabla).
+Pas compris ce qu'est eredis mais ça a l'air relativement important.
+
+=============================================================
+lasp_sql_lexer.erl:
+-module(lasp_sql_lexer).
+-export([string/1,string/2,token/2,token/3,tokens/2,tokens/3]).
+-export([format_error/1]).
+Bizzare ça semble comprendre des chemins de fichiers style /gcreupelandt/... Ca n'a pas pu être hardcodé donc ça doit être généré par le programme.
+Bref c'est un lexer.
+
+=============================================================
+lasp_sql_lexer.xrl:
+Lexer
+
+=============================================================
+lasp_sql_materialized_view.erl:
+-module(lasp_sql_materialized_view).
+-include("lasp.hrl").
+-export([create/1,
+         create/2,
+         get_value/2,
+         insert_row/2,
+         create_empty_table/1,
+         create_table_with_values/2]).
+Semble gérer du SQL...?
+Pourquoi ?
+Le but est de transformer du SQL en CRDT?
+
+=============================================================
+lasp_sql_parser.erl:
+-module(lasp_sql_parser).
+parser sql...?
+
+=============================================================
+lasp_sql_parser.yrl:
+parser sql...?
+
+=============================================================
+lasp_state_based_synchronization_backend.erl:
+-module(lasp_state_based_synchronization_backend).
+-behaviour(gen_server).
+-behaviour(lasp_synchronization_backend).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+
+-export([blocking_sync/1,
+         propagate/1]).
+-export([extract_log_type_and_payload/1]).
+Je ne comprends pas trop l'implémentation, mais ça semble important.
+Par exemple:
+propagate(ObjectFilterFun) ->
+    gen_server:call(?MODULE, {propagate, ObjectFilterFun}, infinity).
+Je ne sais pas ce que ça fait en pratique.
+Pourquoi on a l'air d'avoir une approche serveur-client ?
+Dans handle_cast, je ne suis pas sûr de bien suivre ce que ça fait. Notamment le fait de ne pas merge les metadatas...?
+Bref ça a l'air de gérer les envois de messages de synchronization.
+Qu'est-ce que orddit ?
+
+=============================================================
+lasp_storage_backend.erl:
+-module(lasp_storage_backend).
+-behaviour(gen_server).
+-include("lasp.hrl").
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+-export([put/3,
+         update/3,
+         update_all/2,
+         get/2,
+         reset/1,
+         fold/3]).
+La plupart des implémentations font appel à gen_serv:call(...).
+A nouveau, je ne pense pas que ce soit important.
+
+=============================================================
+lasp_sup.erl:
+-module(lasp_sup).
+-behaviour(supervisor).
+-export([start_link/0,
+         random_port/0]).
+-export([init/1]).
+Ca a l'air d'être un truc de configuration par défaut mais pas certain de ce que ça fait exactement.
+
+=============================================================
+lasp_support.erl:
+-module(lasp_support).
+-include("lasp.hrl").
+-export([runner_node/0,
+         get_cluster_members/1,
+         pmap/2,
+         wait_until/3,
+         wait_until_left/2,
+         wait_until_joined/2,
+         wait_until_offline/1,
+         wait_until_disconnected/2,
+         wait_until_connected/2,
+         nodelist/0,
+         start_node/3,
+         start_and_join_node/3,
+         start_nodes/2,
+         stop_nodes/2,
+         stop_runner/0,
+         start_runner/0,
+         puniform/1,
+         join_to/2,
+         partition_cluster/2,
+         heal_cluster/2,
+         load_lasp/3,
+         start_lasp/2,
+         push_logs/0,
+         mynode/0]).
+Je ne suis pas sûr mais j'ai l'impression que ce sont des outils utiles pour faire des tests?
+
+=============================================================
+lasp_synchronization_backend.erl:
+-module(lasp_synchronization_backend).
+-export([send/3,
+         log_transmission/2]).
+-export([broadcast_tree_mode/0,
+         client_server_mode/0,
+         peer_to_peer_mode/0,
+         i_am_server/0,
+         i_am_client/0,
+         reactive_server/0,
+         seed/0,
+         membership/0,
+         compute_exchange/1,
+         without_me/1]).
+BIzarre... Simulation d'une partition?
+
+=============================================================
+lasp_throughput_client.erl:
+auteur: "Vitor Enes Duarte"
+-module(lasp_throughput_client).
+-behaviour(gen_server).
+-export([start_link/0]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Semble servir à réaliser des mesures?
+
+=============================================================
+lasp_throughput_server.erl:
+auteur: "Vitor Enes Duarte"
+-module(lasp_throughput_server).
+-behaviour(gen_server).
+-include("lasp.hrl").
+-export([start_link/0]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Semble mesurer la convergence...??!
+
+=============================================================
+lasp_type.erl:
+-module(lasp_type).
+-include("lasp.hrl").
+-export([new/1,
+         update/4,
+         merge/3,
+         threshold_met/3,
+         is_inflation/3,
+         is_bottom/2,
+         is_strict_inflation/3,
+         encode/3,
+         decode/3,
+         query/2,
+         get_type/1,
+         delta/3]).
+Définit les différents types et définit les différentes méthodes en appelant T:laMethode.
+Avec T étant le type. Mais où sont définies ces méthodes...? Où est la définition de T ?
+Dans la liste de types il faut ajouter orswot avec state_orswot !
+
+=============================================================
+lasp_unique.erl:
+-module(lasp_unique).
+-behaviour(gen_server).
+-export([start_link/0,
+         start_link/1,
+         unique/0]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Premet de retourner une valeur unique, je crois.
+
+=============================================================
+lasp_vclock.erl:
+-module(lasp_vclock).
+-export([fresh/0, descends/2, merge/1, get_counter/2, subtract_dots/2,
+         increment/2, all_nodes/1, equal/2,
+         to_binary/1, from_binary/1, dominates/2, glb/2]).
+-export_type([vclock/0, vclock_node/0, binary_vclock/0]).
+Implémente le vector clock. Pourrait être utile pour orswot.
+
+=============================================================
+lasp_workflow.erl:
+-module(lasp_workflow).
+-export([start_link/0,
+         start_link/1,
+         task_completed/2,
+         is_task_completed/1,
+         is_task_completed/2,
+         task_progress/1]).
+-export([init/1,
+         handle_call/3,
+         handle_cast/2,
+         handle_info/2,
+         terminate/2,
+         code_change/3]).
+Semble capable de déterminer quand une task est terminée sur tous les nodes.
+Je pense que c'était utilisé pour leurs mesures avec le ads-counter.
+=============================================================
+lasp_awset_ps_ext.erl:
+-module(state_awset_ps_ext).
+auteur: Junghun Yoo Doctorant de Oxford...?
+-export([intersect/2,
+         map/2,
+         union/2,
+         product/2,
+         filter/2]).
+Définis ces méthodes en se basant sur state_awset_ps:autreMethode(...). Mais à nouveau, comme pour orset, je ne vois pas où est implémenté cela !
+
+=============================================================
+state_orset_ext.erl:
+-module(state_orset_ext).
+-export([intersect/2,
+         map/2,
+         union/2,
+         product/2,
+         filter/2]).
+Comme pour awset, cela implémente les méthodes en se basant sur aw_set:autreMethode(...). Mais à nouveau je ne vois pas où c'est implémenté.
+
+
+QUESTIONS:
+
+1) Serait-il possible d'avoir, quelque part, un genre de résumé de la structure? Style pour chaque fichier l'idée générale/à quoi il sert. Car là, j'ai beau avoir parcouru l'ensemble de tout le code, pour une bonne partie des fichiers, je n'ai aucune idée de ce qu'ils représentent ou de leur but.
+
+2) Pourquoi des méthodes exports (style bind, fold, read, map,...) sont redéfinies PLEIN de fois dans des fichiers différents? Par exemple fold est dans les export des fichiers:
+lasp.erl, lasp_core.erl, lasp_dets_storage_backend.erl, lasp_distribution_backend.erl, lasp_ets_storage_backend.erl, lasp_redis_storage_backend.erl...
+
+3) Il y a plein de macros utilisées (?MODULE par exemple) mais je ne trouve pas où elles sont définies. Une bonne partie sont définies dans lasp.hrl
+
+
+4) Pourquoi dans le code je retrouve beaucoup la notion de serveur et de client? Alors que le principe est justement d'avoir du peer-to-peer sans serveur principal, non ?
+Il y un mode client-serveur et un mode peer-to-peer ?
+
+5) Où se trouve l'implémentation pour le orset? C'est à dire pour add, remove et merge. Car je ne trouve ça nulle part ! Dans orset_state_ext.erl je vois bien qu'on fait appel à des choses comme state_orset:merge(...). Mais je ne trouve pas où ces méthodes sont implémentées, j'ai beau chercher. C'est pareil pour awset.
+
+6) Il y a plein de modules qui ont behaviour(gen_server) mais je ne comprends pas vraiment pourquoi.
+
+7) Qu'est-ce que "dag", j'ai vu ce mot revenir plusieurs fois mais je ne connais pas sa signification.
+
+8) Qu'en est-il des acks? Je vois plusieurs fois dans certains fichiers allusions à des acks. Mais nous n'en avons jamais parlé. Quel est leur rôle ici?
+
+9) Je ne comprends pas pourquoi il a des fichiers en rapport avec du SQL.
+
+10) J'ai l'impression que plein de fichiers ne font pas partie de l'implémentation de lasp mais plutôt d'outils pour tester/simuler etc.
+
+11) Il y a plusieurs fichiers .erl dans lesquels apparaissent des strings tels que gcreupelandt/home/... (des path). 
+Ces fichiers seraient donc générés lors du build? Je pensais que tous les fichiers dans le dossier src avaient été codés manuellement.
+
+12) J'ai vu que Christopher Meiklejohn avait essayé d'implémenter ORSWOT dans lasp mais avait abandonné car ça s'avérait plus compliqué qu'il ne l'avait prévu...
+issue#35 J'ai jeté un coup d'oeil aux fichiers liés (qui ont été retirés) et j'avoue ne pas comprendre certaines parties. Par ailleurs, il n'y aucun détail sur ce qui aurait rendu
+cette tâche si hardue. J'ai remarqué qu'il avait codé (avant de retirer) le fichier lasp_orswot.erl dans le dossier /lasp/src mais je ne trouve pas l'équivalent, par exemple lasp_orset.erl dans le dossier /src. Je ne comprends pas pourquoi.
+Issue: https://github.com/lasp-lang/lasp/issues/35?fbclid=IwAR2_9HjD0-SR25ExL1BkexHvN7tJ5dMUT2HnhMRur6WvHIzGnSIyNehkRU8
+
+
+REMARQUES:
+Il y a plusieurs fichiers .erl dans lesquels apparaissent des strings tels que gcreupelandt/home/... (des path). 
+Ces fichiers seraient donc générés lors du build? Je pensais que tous les fichiers dans le dossier src avaient été codés manuellement.
+
+dag = graphe sans cycle
+
+
+Implémenter mon propre vector clock pour être sûr qu'il compte les bonnes choses et pas d'autres choses.
+
+
+
+Pour la semaine prochaine: (mardi 27 14h)
+
+Un script qui peut injecter une partition.
+Une fake application qui tournerait sur les nodes et génère des valeurs. Le plus paramétrable possible.
+Implémenter orswot sur base du orset.

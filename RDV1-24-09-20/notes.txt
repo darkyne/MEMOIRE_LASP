@@ -1,0 +1,21 @@
+Première rencontre et présentation du sujet.
+
+Bien comprendre ce que fait LASP.
+C'est cohérent car convergent, pas besoin de consensus.
+EN soi c'est une base de données répliquées. CHaque CRDT c'est comme une variable qu'on peut affecter.
+
+1: Bien comprendre la théorie de lasp (et le code).
+
+2: Faire des mesures dans différents cas de figure (avec différents types de pannes, etc...)
+
+
+Comment fonctionne LASP:
+Si on a N noeuds dont certain sont différents les uns des autres. Occasionellement, un noeuf envoit son état à un autre noeud. Et si l'autre noeud voit que l'autre a des données plus récentes, il se met à jour.
+Du coup c'est très tres simple mais ça peut être un peu lent.Il y a des possibilités pour que ça soit plus rapide, diminuer le temps entre chaque message, faire un broadcast mais ça enverrait potentiellement beaucoup de messages s'il y a beaucoup de nodes.
+
+
+Jouer un peu avec LASP. Faire tourner quelques noeuds. Lire quelques articles.
+
+CRDT Conflictfree replicated data type
+
+RDV2 Mercredi 30 septembre 16h à son bureau (rez-de-chaussée Réaumur).

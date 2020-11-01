@@ -1,0 +1,13 @@
+{application,plumtree,
+             [{description,"Epidemic Broadcast Trees"},
+              {vsn,"0.6.0"},
+              {registered,[]},
+              {applications,[kernel,stdlib,crypto,lager,partisan]},
+              {mod,{plumtree_app,[]}},
+              {modules,[plumtree,plumtree_app,plumtree_broadcast,
+                        plumtree_broadcast_handler,
+                        plumtree_peer_service_console,plumtree_sup,
+                        plumtree_util]},
+              {env,[{plumtree_data_dir,"data"}]},
+              {licenses,["Apache 2.0"]},
+              {links,[{"Github","https://github.com/lasp-lang/plumtree"}]}]}.

@@ -1,0 +1,36 @@
+2020-09-27 16:49:54.385 [info] <0.190.0>@partisan_config:init:61 Using node name: 'node-1@gcreupelandt-N551VW'
+2020-09-27 16:49:54.392 [info] <0.192.0>@partisan_config:get_node_address:235 Resolving "gcreupelandt-N551VW"...
+2020-09-27 16:49:54.394 [info] <0.192.0>@partisan_config:get_node_address:238 Resolved "node-1@gcreupelandt-N551VW" to {127,0,1,1}
+2020-09-27 16:49:54.394 [info] <0.190.0>@partisan_config:get_node_address:255 Resolved "gcreupelandt-N551VW" to {127,0,1,1}
+2020-09-27 16:49:54.459 [info] <0.190.0>@partisan_sup:init:66 Partisan listening on {127,0,1,1}:38875 listen_addrs: [#{ip => {127,0,1,1},port => 38875}]
+2020-09-27 16:49:54.464 [info] <0.242.0>@partisan_orchestration_backend:init:115 Not using container orchestration; disabling.
+2020-09-27 16:49:54.471 [info] <0.243.0>@partisan_config:seed:160 node 'node-1@gcreupelandt-N551VW' choosing random seed: {102196684,-576460750658077511,-576460752303423389}
+2020-09-27 16:49:54.487 [info] <0.246.0>@partisan_config:seed:160 node 'node-1@gcreupelandt-N551VW' choosing random seed: {102196684,-576460750658077511,-576460752303423389}
+2020-09-27 16:49:54.506 [info] <0.271.0>@lasp_sup:configure_defaults:219 Setting jitter: false
+2020-09-27 16:49:54.507 [info] <0.271.0>@lasp_sup:configure_defaults:224 Setting jitter percent: 1
+2020-09-27 16:49:54.508 [info] <0.271.0>@lasp_sup:configure_defaults:229 Setting event interval: 0
+2020-09-27 16:49:54.510 [info] <0.271.0>@lasp_sup:configure_defaults:234 Setting max events: 1000
+2020-09-27 16:49:54.512 [info] <0.271.0>@lasp_sup:configure_defaults:239 Setting extended logging: false
+2020-09-27 16:49:54.513 [info] <0.271.0>@lasp_sup:configure_defaults:244 Setting mailbox logging: false
+2020-09-27 16:49:54.514 [info] <0.271.0>@lasp_sup:configure_defaults:249 Setting operation mode: state_based
+2020-09-27 16:49:54.516 [info] <0.271.0>@lasp_sup:configure_defaults:254 Setting set type: orset
+2020-09-27 16:49:54.518 [info] <0.271.0>@lasp_sup:configure_defaults:267 Setting broadcast: false
+2020-09-27 16:49:54.541 [info] <0.271.0>@lasp_sup:init:88 Membership: true
+2020-09-27 16:49:54.543 [info] <0.271.0>@lasp_sup:init:106 Workflow: true
+2020-09-27 16:49:54.549 [info] <0.271.0>@lasp_sup:advertisement_counter_child_specs:388 AdClientEnabled: false
+2020-09-27 16:49:54.552 [info] <0.271.0>@lasp_sup:advertisement_counter_child_specs:421 AdServerEnabled: false
+2020-09-27 16:49:54.553 [info] <0.271.0>@lasp_sup:game_tournament_child_specs:451 TournClientEnabled: false
+2020-09-27 16:49:54.554 [info] <0.271.0>@lasp_sup:game_tournament_child_specs:470 TournServerEnabled: false
+2020-09-27 16:49:54.556 [info] <0.271.0>@lasp_sup:throughput_child_specs:493 ThroughputType: gset
+2020-09-27 16:49:54.557 [info] <0.271.0>@lasp_sup:throughput_child_specs:501 ThroughputClientEnabled: false
+2020-09-27 16:49:54.558 [info] <0.271.0>@lasp_sup:throughput_child_specs:520 ThroughputServerEnabled: false
+2020-09-27 16:49:54.559 [info] <0.271.0>@lasp_sup:divergence_child_specs:543 DivergenceType: gcounter
+2020-09-27 16:49:54.560 [info] <0.271.0>@lasp_sup:divergence_child_specs:551 DivergenceClientEnabled: false
+2020-09-27 16:49:54.561 [info] <0.271.0>@lasp_sup:divergence_child_specs:570 DivergenceServerEnabled: false
+2020-09-27 16:49:54.565 [info] <0.320.0>@lasp_ets_storage_backend:init:106 Backend initialized with pid: <0.320.0>
+2020-09-27 16:49:54.566 [info] <0.319.0>@lasp_storage_backend:init:121 Backend lasp_ets_storage_backend initialized: <0.320.0>
+2020-09-27 16:49:54.568 [error] <0.325.0> eredis: Re-establishing connection to "127.0.0.1":6379 due to {connection_error,econnrefused}
+2020-09-27 16:50:00.696 [info] <0.245.0>@lasp_membership:update_membership:115 Attempting to update membership; state: [#{channels => [undefined],listen_addrs => [#{ip => {127,0,1,1},port => 57061}],name => 'node-2@gcreupelandt-N551VW',parallelism => 1},#{channels => [undefined],listen_addrs => [#{ip => {127,0,1,1},port => 39639}],name => 'node-3@gcreupelandt-N551VW',parallelism => 1},#{channels => [undefined],listen_addrs => [#{ip => {127,0,1,1},port => 38875}],name => 'node-1@gcreupelandt-N551VW',parallelism => 1},#{channels => [undefined],listen_addrs => [#{ip => {127,0,1,1},port => 47121}],name => 'runner@gcreupelandt-N551VW',parallelism => 1}]
+2020-09-27 16:50:00.699 [info] <0.245.0>@lasp_membership:update_membership:120 Declared dynamic membership: {<<"_membership">>,lwwregister}
+2020-09-27 16:50:00.699 [info] <0.245.0>@lasp_membership:update_membership:124 Decoded membership: ['node-2@gcreupelandt-N551VW','node-3@gcreupelandt-N551VW','node-1@gcreupelandt-N551VW','runner@gcreupelandt-N551VW']
+2020-09-27 16:50:00.705 [info] <0.245.0>@lasp_membership:update_membership:128 Updated membership: {<<"_membership">>,lwwregister}

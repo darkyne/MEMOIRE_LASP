@@ -1,0 +1,90 @@
+Ce que j'ai fait pour l'instant:
+
+Lire la documentation sur https://lasp-lang.readme.io/docs
+Lancer une simulation de deux nodes LASP qui communiquent sur mon ordinateur via 2 shell erlang
+Ecrire, compiler et exécuter un petit programme erlang, tuto erlang
+Ecrire un script de test pour lancer 10 nodes lasp et mesurer leurs vitesses de convegence.
+
+Pour l'instant je test juste la convergence de quelques noeuds simulés en local sur la vitesse à laquelle ils récupèrent un valeur (valeur "5" update par le node 1).
+4 ou 8 nodes la différence est très petite. Par contre monter au dessus de 10 nodes (simulation avec 25) devient extrêmement lent mais cela est très fortement influence par la puissance de ma machine qui les simule.
+
+
+Mesures pour simulation locales avec:
+lasp:declare({<<"set">>, state_orset}, state_orset), %Variable declaration (from every node).
+lasp:update({<<"set">>, state_orset}, {add, TestValue}, self()); %Update with value TestValue=5 from node1.
+While(ReadenValue!=TestValue) query
+Mesures de temps entre la première query et la query qui trouve le bon résultat (le node a donc convergé):
+
+2 nodes:
+8905 ms
+
+3nodes:
+8922 ms
+
+4nodes:
+8931 ms
+
+5nodes:
+9189 ms
+
+6nodes:
+9357 ms
+
+7nodes:
+9959 ms
+
+8nodes:
+10141 ms
+
+9nodes:
+11257 ms
+
+10nodes:
+12089 ms
+
+11nodes:
+12471ms
+
+12nodes:
+15843 ms
+
+Quand le nombre de nodes devient important, c'est clairement les performances de l'ordinateur qui run les nodes qui intervient.
+Quand le nombre de nodes est plus petit, il est difficile de dire, pour l'instant, s'il s'agit de l'influence de la taille du cluster ou des performances de l'ordinateur.
+Il va falloir faire un grand nombre de run sur des machines différentes (dockers/VM en cloud) pour avoir de réels échantillons.
+
+Faisons un script qui lance des nodes mais qui ne mesure pas leur vitesse de convergence, leur fait simplement calculer des trucs inutiles. Ainsi regardons si on obtient le même genre de courbe.
+Ca signifierait clairement que ce que je visualisais n'était pas dû à l'influence de la taille du cluster mais du nombre de nodes en local (performances du pc).
+
+2 nodes:
+8090 ms
+
+3nodes:
+8800 ms
+
+4nodes:
+8935 ms
+
+5nodes:
+9001 ms
+
+6nodes:
+9200 ms
+
+7nodes:
+9350 ms
+
+8nodes:
+9600 ms
+
+9nodes:
+9851 ms
+
+10nodes:
+10184 ms
+
+11nodes:
+10451 ms
+
+Ma façon de mesurer la vitesse de convergence n'est pas très appropriée. Il y a une trop grande influence dûe aux performances de ma machine.
+Je devrais coder le test de façon à éviter de faire une while. Un atomic read style "read untill you get value X" existe apparemment déjà dans Lasp.
+

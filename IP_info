@@ -1,0 +1,16 @@
+VM IP:  130.104.229.25
+
+HOME:
+Home routeur IP: 109.132.2.179
+Home computer IP: 192.168.1.39
+Commands:
+rebar3 shell --name lasp1@192.168.1.39 on PC
+rebar3 shell --name tfe1@130.104.229.25 on VM
+
+=================================================
+
+UCLOUVAIN-PRIVE:
+computer IP: 130.104.221.134
+Commands:
+rebar3 shell --name lasp1@130.104.221.134 on PC
+rebar3 shell --name tfe1@130.104.229.25 on VM

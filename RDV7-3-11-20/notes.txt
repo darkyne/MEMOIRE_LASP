@@ -1,0 +1,55 @@
+TODO:
+
+Avoir la fonction qui ajoute et retire. (pas que ajouter ou que retirer)
+Ajouter mesure du réseau et de la mémoire utisliée par le CRDT.
+Avoir un programme qui analyse les outputs.
+Résoudre le programme d'orchestrage (pour démarer les expériences en même temps).
+
+DONE:
+-Placer mes fonctions de mesure dans un module extérieur, appellable via lasp_convergence_measure:blabla
+-Mesurer la taille du CRDT
+-Orchestrage (utiliser un CRDT pour prévenir qu'on a finit, écrire le fichier d'output seulement quand tous les nodes ont fini) et lancer un grand nombre d'expérience de façon automatique à la suite. Et ce en ayant des nodes sur mon pc et des nodes sur le pi
+
+
+
+PROBLEME:
+
+Quand je laisse des nodes tourner plusieurs minutes, mon ordi crash car la mémoire est saturée -> Visiblement fuite mémoire (unable to allocate XXXXXXXXXXXXX bytes on the heap).
+Même si je lance un bete code qui déclare un awset, y met quelques valeurs puis ne fait plus rien, au bout de quelques minutes, ça crash ! Le problème viendrait donc du aw_set !
+C'est peut-être lié au fait que je déclarais la variable sur tous les nodes !
+Expérience en cours pr savoir si c'était ça ou pas. Maintenant seul Node1 déclare la variable.
+Je déclare correctement le CRDT mais ça crash toujours au bout d'un long moment (10 min par exemple).
+Il semble que le problème de fuite mémoire soit lié à l'implémentation du state_awset.
+
+
+Il reste à faire:
+-Mesure réseau (compter les envois par exemple)
+-Réussir à faire un leave du cluster
+-Programme qui analyse les outputs
+-Experience dynamique (add, time to leave, remove)
+
+Note:
+Dans l'expérience, join le cluster et attendre que le nombre de members == TotalNumberOfNodes avant de vrm commencer ? Ca pourrait peut-être régler le problème du raspberry pi qui boot ses nodes bcp plus lentement. En fait je lance les 2 nodes du raspberry pi 7 secondes avant les nodes de mon pc. Car ils mettent 10 secondes à boot sur le pi et 3 seconde sur mon pc.
+
+
+
+J'arrive à lancer une expérience qui va être itérée 100 fois.
+Pour l'instant j'ai mesuré en static add avec 5 nodes (3sur pc et 2 sur pi).
+
+TODO:
+Mettre les différentes expé dans des fichiers différents pr ne pas devoir modifier lasp_app.erl mais avoir différentes app.
+Comme ça dans le script je pourrais lancer une autre boucle for avec une autre app après avoir terminé la première etc...
+Comme ça je pourrais laisser tourner toute la nuit :)
+OK je peux lancer les mesures et ça va tourner toute la nuit :)
+
+
+STILL TO DO:
+-Mesure réseau
+-Expérience dynamique add/remove
+-Programme d'analyse des fichiers
+-Mise au propre ("sur papier") de mon idée (algorithme) pr faire des mesures propres en continu en tâche de fond.
+
+TO DO if time:
+Trouver comment modifier la vitesse de convergence (diminuer le temps entre chaque envoi).
+
+
